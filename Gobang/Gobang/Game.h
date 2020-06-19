@@ -3,7 +3,7 @@
 #include "MyButton.h"
 #include "Board.h"
 #include"chess_man.h"
-#include"Rule.h"
+#include "Rule.h"
 // Game 对话框
 
 class Game : public CDialogEx
