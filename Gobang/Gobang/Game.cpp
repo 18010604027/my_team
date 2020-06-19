@@ -180,6 +180,8 @@ BOOL Game::OnInitDialog()
 	bmpBackground.CreateCompatibleBitmap(this->GetDC(), rect.Width(), rect.Height());
 	dc.SelectObject(bmpBackground);
 	dc.FillSolidRect(rect, RGB(213, 186, 125));
+	imgBackground.Detach();
+	imgBackground.Create(rect.Width(), rect.Height(), 32);
 	BitBlt(imgBackground.GetDC(), 0, 0, rect.Width(), rect.Height(), dc, 0, 0, SRCCOPY);// TODO: 在此处添加消息处理程序代码
 	gbutton1.SetTextColor(RGB(255, 255, 255));
 	gbutton1.SetBkColor(RGB(0, 0, 0));
