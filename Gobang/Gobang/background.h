@@ -1,5 +1,5 @@
 #pragma once
-
+ 
 
 extern CBitmap bmpBackground;
 extern CImage imgBackground;
