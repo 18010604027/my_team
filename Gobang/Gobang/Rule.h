@@ -1,12 +1,8 @@
 #pragma once
 #include"pch.h"
 #include<ctime>
+#include"chess_man.h"
 using namespace std;
-typedef struct chess
-{
-	unsigned int x, y;
-	int c;//(0Îª¿Õ£¬1Îª°×£¬2ÎªºÚ) 
-}Chess;
 class Rule
 {
 private:
@@ -16,12 +12,12 @@ private:
 	bool win;
 public:
 	Rule();
-	void change(Chess c);
-	bool judge(Chess);
+	void change(chess c);
+	bool judge(chess);
 	int get_chess(int x,int y);
 	int getmax(const  int score[][15]);
 	long long search(int dep, int c);
 	long long getscore(const int board[][15], int c);
 	bool four(const  int board[][15], int c, int x, int y);
-	Chess AI(int c);
+	chess AI(int c);
 };

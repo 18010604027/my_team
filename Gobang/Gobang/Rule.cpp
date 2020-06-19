@@ -13,18 +13,18 @@ Rule::Rule()
 	}
 }
 
-void Rule::change(Chess c)
+void Rule::change(chess c)
 {
-	two[c.x][c.y] = c.c;
+	two[c.x][c.y] = c.z;
 }
-bool Rule::judge(Chess c)
+bool Rule::judge(chess c)
 {
 	int i, j;
 	int t;
 	t = 0;
 	for (i = c.x + 1, j = c.y; t < 4 && i < 15; i++)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -32,7 +32,7 @@ bool Rule::judge(Chess c)
 	}
 	for (i = c.x - 1, j = c.y; t < 4 && i >= 0; i--)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -45,7 +45,7 @@ bool Rule::judge(Chess c)
 	t = 0;
 	for (i = c.x, j = c.y + 1; t < 4 && j < 15; j++)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -53,7 +53,7 @@ bool Rule::judge(Chess c)
 	}
 	for (i = c.x, j = c.y - 1; t < 4 && j >= 0; j--)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -66,7 +66,7 @@ bool Rule::judge(Chess c)
 	t = 0;
 	for (i = c.x + 1, j = c.y + 1; t < 4 && i < 15 && j < 15; i++, j++)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -74,7 +74,7 @@ bool Rule::judge(Chess c)
 	}
 	for (i = c.x - 1, j = c.y - 1; t < 4 && i >= 0 && j >= 0; i--, j--)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -87,7 +87,7 @@ bool Rule::judge(Chess c)
 	t = 0;
 	for (i = c.x + 1, j = c.y - 1; t < 4 && i < 15 && j >= 0; i++, j--)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -95,7 +95,7 @@ bool Rule::judge(Chess c)
 	}
 	for (i = c.x - 1, j = c.y + 1; t < 4 && i >= 0 && j < 15; i--, j++)
 	{
-		if (two[i][j] != c.c)
+		if (two[i][j] != c.z)
 		{
 			break;
 		}
@@ -203,9 +203,9 @@ int Rule::get_chess(int x, int y)
 	return two[x][y];
 }
 
-Chess Rule::AI(int c)
+chess Rule::AI(int c)
 {
-	Chess chess;
+	chess chess;
 	int i, j;
 	for (i = 0; i < 15; i++)
 	{
@@ -223,15 +223,15 @@ Chess Rule::AI(int c)
 	}
 	if (i == 15 && j == 15)
 	{
-		chess.x = 7, chess.y = 7, chess.c = c;
+		chess.x = 7, chess.y = 7, chess.z = c;
 		return chess;
 	}
 	if (search(0, c - 1) == 0 && x == -1 && y == -1)
 	{
 		MessageBox(NULL, L"电脑已经放弃游戏！", L"温馨提示", NULL);
-		chess.c = 0;
+		chess.z = 0;
 	}
-	chess.x = x, chess.y = y, chess.c = c;
+	chess.x = x, chess.y = y, chess.z = c;
 	return chess;
 }
 long long Rule::search(int dep, int c)//(深度，棋子类型)
@@ -239,8 +239,8 @@ long long Rule::search(int dep, int c)//(深度，棋子类型)
 	long long max;
 	long long score, rem;
 	bool first = true;
-	Chess chess;
-	chess.c = c + 1;
+	chess chess;
+	chess.z = c + 1;
 	win = false;
 	if (dep == 2)
 	{
