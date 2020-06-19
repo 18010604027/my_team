@@ -201,6 +201,7 @@
   <ItemGroup>
     <ClCompile Include="background.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="chess_man.h.cpp" />
     <ClCompile Include="file_name.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gobang.cpp" />
