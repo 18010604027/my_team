@@ -27,6 +27,7 @@ public:
 	bool AI;
 	Rule rule;
 	bool win;
+	chess_man Chess_man;
 	chess_man *chess_man;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
