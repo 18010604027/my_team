@@ -104,7 +104,7 @@
     <Image Include="res\Gobang.ico">
       <Filter>资源文件</Filter>
     </Image>
-    <Image Include="E:\BaiduNetdiskDownload\Gobang\Gobang\Welcome.bmp">
+    <Image Include="bmp\Welcome.bmp">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>
