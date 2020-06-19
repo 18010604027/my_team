@@ -98,10 +98,9 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 void Game::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	//Chess_man.jumpup();
-	//Chess_man.creat_chess(chess chess2;
+	Chess_man.jumpup();
+	Chess_man.delete_chess();
 }
-
 
 void Game::OnBnClickedButton2()
 {
