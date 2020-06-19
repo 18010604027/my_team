@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Board.h"
-
+ 
 IMPLEMENT_DYNAMIC(CBoard, CStatic)
 
 CBoard::CBoard()
