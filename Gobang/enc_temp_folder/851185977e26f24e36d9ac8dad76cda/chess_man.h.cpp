@@ -1,5 +1,5 @@
 #include"pch.h"
-#include"chess_man.h" 
+#include"chess_man.h"
 class chess_man
 {
 private:

@@ -18,5 +18,5 @@ public:
 	chess_node* next;//指向下一个结点的指针
 	chess chess1;
 }chess_node;
- 
+
 
