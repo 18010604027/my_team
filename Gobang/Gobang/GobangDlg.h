@@ -3,7 +3,8 @@
 //
 
 #pragma once
-
+#include"background.h"
+#include "MyButton.h"
 
 // CGobangDlg 对话框
 class CGobangDlg : public CDialogEx
@@ -31,4 +32,17 @@ protected:
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
+public:
+	CMyButton button1;
+	afx_msg void OnBnClickedButton1();
+	CMyButton button2;
+	afx_msg void OnBnClickedButton2();
+	CMyButton button5;
+	afx_msg void OnBnClickedButton5();
+	CMyButton button3;
+	afx_msg void OnBnClickedButton3();
+	CMyButton button4;
+	afx_msg void OnBnClickedButton4();
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);
 };

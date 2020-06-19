@@ -7,6 +7,7 @@
 #include "Gobang.h"
 #include "GobangDlg.h"
 #include "afxdialogex.h"
+#include "Game.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -59,16 +60,35 @@ CGobangDlg::CGobangDlg(CWnd* pParent /*=nullptr*/)
 void CGobangDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_BUTTON1, button1);
+	DDX_Control(pDX, IDC_BUTTON2, button2);
+	DDX_Control(pDX, IDC_BUTTON5, button5);
+	DDX_Control(pDX, IDC_BUTTON3, button3);
+	DDX_Control(pDX, IDC_BUTTON4, button4);
 }
 
 BEGIN_MESSAGE_MAP(CGobangDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BUTTON1, &CGobangDlg::OnBnClickedButton1)
+	ON_BN_CLICKED(IDC_BUTTON2, &CGobangDlg::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON5, &CGobangDlg::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON3, &CGobangDlg::OnBnClickedButton3)
+	ON_BN_CLICKED(IDC_BUTTON4, &CGobangDlg::OnBnClickedButton4)
+	ON_WM_NCHITTEST()
+	ON_MESSAGE(190, MyBoardDown)
 END_MESSAGE_MAP()
 
 
 // CGobangDlg 消息处理程序
+LRESULT CGobangDlg::MyBoardDown(WPARAM x, LPARAM y)
+{
+	static bool i = 0;
+	i = !i;
+	//board.ChangeChess(x, y, i + 1);
+	return 0;
+}
 
 BOOL CGobangDlg::OnInitDialog()
 {
@@ -100,7 +120,22 @@ BOOL CGobangDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
-
+	set_bk(IDB_BITMAP1);
+	button1.SetTextColor(RGB(255, 255, 255));
+	button1.SetBkColor(RGB(0, 0, 0));
+	button1.SetDiaphaneity(100, 180, 10);
+	button2.SetTextColor(RGB(255, 255, 255));
+	button2.SetBkColor(RGB(0, 0, 0));
+	button2.SetDiaphaneity(100, 180, 10);
+	button3.SetTextColor(RGB(255, 255, 255));
+	button3.SetBkColor(RGB(0, 0, 0));
+	button3.SetDiaphaneity(100, 180, 10);
+	button4.SetTextColor(RGB(255, 255, 255));
+	button4.SetBkColor(RGB(0, 0, 0));
+	button4.SetDiaphaneity(100, 180, 10);
+	button5.SetTextColor(RGB(255, 255, 255));
+	button5.SetBkColor(RGB(0, 0, 0));
+	button5.SetDiaphaneity(100, 180, 10);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -142,7 +177,7 @@ void CGobangDlg::OnPaint()
 	}
 	else
 	{
-		CDialogEx::OnPaint();
+		draw_bk(1);
 	}
 }
 
@@ -153,3 +188,48 @@ HCURSOR CGobangDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+void CGobangDlg::OnBnClickedButton1()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Game game;
+	game.DoModal();
+}
+
+
+void CGobangDlg::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+void CGobangDlg::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	CGobangDlg::OnOK();
+}
+void CGobangDlg::OnBnClickedButton4()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+void CGobangDlg::OnBnClickedButton5()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	WinExec("notepad.exe 游戏说明.txt ", SW_SHOWNORMAL);
+}
+LRESULT CGobangDlg::OnNcHitTest(CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ScreenToClient(&point);
+	CRect rc;
+	GetClientRect(&rc);
+	if (rc.PtInRect(point))
+	{
+		return HTCAPTION;
+	}
+	else
+	{
+		return CDialog::OnNcHitTest(point);
+	}
+	return CDialogEx::OnNcHitTest(point);
+}
