@@ -2,8 +2,8 @@
 #include"background.h"
 #include "MyButton.h"
 #include "Board.h"
-
-
+#include"chess_man.h"
+#include"Rule.h"
 // Game 对话框
 
 class Game : public CDialogEx
@@ -23,6 +23,11 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+	bool ch;
+	bool AI;
+	Rule rule;
+	bool win;
+	chess_man *chess_man;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
