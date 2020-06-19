@@ -188,6 +188,7 @@
     <ClInclude Include="chess_man.h" />
     <ClInclude Include="file_name.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="Gobang.h" />
     <ClInclude Include="GobangDlg.h" />
     <ClInclude Include="MyButton.h" />
@@ -201,6 +202,7 @@
     <ClCompile Include="background.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="file_name.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gobang.cpp" />
     <ClCompile Include="GobangDlg.cpp" />
     <ClCompile Include="MyButton.cpp" />
