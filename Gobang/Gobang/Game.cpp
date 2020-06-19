@@ -30,6 +30,7 @@ void Game::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON3, gbutton3);
 	DDX_Control(pDX, IDC_BUTTON4, gbutton4);
 	DDX_Control(pDX, IDC_BOARD, board);
+	DDX_Control(pDX, IDC_BUTTON5, gbutton5);
 }
 
 BEGIN_MESSAGE_MAP(Game, CDialogEx)
@@ -114,8 +115,12 @@ void Game::OnBnClickedButton3()
 	// TODO: 在此添加控件通知处理程序代码
 }
 
-
 void Game::OnBnClickedButton4()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+void Game::OnBnClickedButton5()
 {
 	AI = !AI;
 	if (AI)
@@ -142,10 +147,6 @@ void Game::OnBnClickedButton4()
 	// TODO: 在此添加控件通知处理程序代码
 }
 
-void Game::OnBnClickedButton5()
-{
-	// TODO: 在此添加控件通知处理程序代码
-}
 LRESULT Game::OnNcHitTest(CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
@@ -171,18 +172,8 @@ BOOL Game::OnInitDialog()
 	win = false;
 	AI = false;
 	ch = false;
-	CRect rect;
-	CDC dc;
-	dc.CreateCompatibleDC(this->GetDC());
-	GetClientRect(rect);
-	CBitmap bmp;
-	bmpBackground.Detach();
-	bmpBackground.CreateCompatibleBitmap(this->GetDC(), rect.Width(), rect.Height());
-	dc.SelectObject(bmpBackground);
-	dc.FillSolidRect(rect, RGB(213, 186, 125));
-	imgBackground.Detach();
-	imgBackground.Create(rect.Width(), rect.Height(), 32);
-	BitBlt(imgBackground.GetDC(), 0, 0, rect.Width(), rect.Height(), dc, 0, 0, SRCCOPY);// TODO: 在此处添加消息处理程序代码
+	// TODO: 在此处添加消息处理程序代码
+	reset_bk(IDB_BITMAP2);
 	gbutton1.SetTextColor(RGB(255, 255, 255));
 	gbutton1.SetBkColor(RGB(0, 0, 0));
 	gbutton1.SetDiaphaneity(100, 180, 10);

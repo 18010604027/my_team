@@ -39,10 +39,10 @@ public:
 	CMyButton gbutton2;
 	CMyButton gbutton3;
 	CMyButton gbutton4;
+	CMyButton gbutton5;
 	virtual BOOL OnInitDialog();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnBnClickedButton5();
-	CMyButton gbutton5;
 	CBoard board;
 	afx_msg void OnStnClickedBoard();
 	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);

@@ -225,6 +225,7 @@
     <None Include="res\Gobang.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="bmp\game.bmp" />
     <Image Include="bmp\Welcome.bmp" />
     <Image Include="res\Gobang.ico" />
   </ItemGroup>

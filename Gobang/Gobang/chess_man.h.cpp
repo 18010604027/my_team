@@ -26,7 +26,7 @@ chess_man::chess_man(string file1, int i)			//为什么这里要有一个参数？
 		last->prev = head;
 		file = file1;
 		fstream iofile;
-		iofile.open("date1\\" + file + ".ld", ios::in);//注意这里date文件夹的位置可能放错了
+		iofile.open("date1\\" + file, ios::in);//注意这里date文件夹的位置可能放错了
 
 		iofile >> length;
 		int i = 0;//用来控制从文件里面读取数据
@@ -62,7 +62,7 @@ chess_man::chess_man(string file1, int i)			//为什么这里要有一个参数？
 		last->prev = head;
 		file = file1;
 		fstream iofile;
-		iofile.open("date2\\" + file + ".rp", ios::in);//注意这里date文件夹的位置可能放错了
+		iofile.open("date2\\" + file, ios::in);//注意这里date文件夹的位置可能放错了
 
 		iofile >> length;
 		int i = 0;//用来控制从文件里面读取数据
@@ -135,7 +135,8 @@ void chess_man::save(int x)
 		int i = 1;		//用来控制while循环的
 		chess_node* temp; temp = head->next;
 		string  filename;
-		cin >> filename;
+		filename = file;
+		//cin >> filename;
 		fstream iofile;
 		iofile.open("date1\\" + filename + ".ld", ios::out);
 		iofile << length << endl;								//这里是把头空间的length储存到文件里面
@@ -150,16 +151,17 @@ void chess_man::save(int x)
 			}
 		}
 		iofile.close();
-		fstream file("allname1.txt", ios::out | ios::app);//注意，这里很容易犯错误，一定要在文件尾添加数据，而不是直接写数据，因为直接写数据会把原先的数据给删了
-		file << filename + ".ld" << endl;//这里可能会报错//注意一定要有换行符
-		file.close();
+		fstream file_out("allname1.txt", ios::out | ios::app);//注意，这里很容易犯错误，一定要在文件尾添加数据，而不是直接写数据，因为直接写数据会把原先的数据给删了
+		file_out << filename + ".ld" << endl;//这里可能会报错//注意一定要有换行符
+		file_out.close();
 	}
 	if (x == 2)
 	{
 		int i = 1;		//用来控制while循环的
 		chess_node* temp; temp = head->next;
 		string  filename;
-		cin >> filename;
+		filename = file;
+		//cin >> filename;
 		fstream iofile;
 		iofile.open("date2\\" + filename + ".rp", ios::out);
 		iofile << length << endl;								//这里是把头空间的length储存到文件里面
@@ -174,9 +176,9 @@ void chess_man::save(int x)
 		}
 		iofile.close();
 		iofile.close();
-		fstream file("allname2.txt", ios::out | ios::app);
-		file << filename + ".rp" << endl;//注意一定要有换行符
-		file.close();
+		fstream file_out("allname2.txt", ios::out | ios::app);
+		file_out << filename + ".rp" << endl;//注意一定要有换行符
+		file_out.close();
 	}
 }
 void chess_man::jumpup()//这个应该是改变指针now的值，使之指向上一个
