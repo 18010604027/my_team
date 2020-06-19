@@ -6,6 +6,7 @@
 #include "Game.h"
 #include "afxdialogex.h"
 #include "Rule.h"
+#include "chess_man.h"
 
 
 // Game 对话框
@@ -98,7 +99,6 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 void Game::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	Chess_man.jumpup();
 	Chess_man.delete_chess();
 }
 
