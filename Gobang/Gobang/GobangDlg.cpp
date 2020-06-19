@@ -201,6 +201,7 @@ void CGobangDlg::OnBnClickedButton1()
 void CGobangDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
+
 }
 
 void CGobangDlg::OnBnClickedButton3()
