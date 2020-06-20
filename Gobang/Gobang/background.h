@@ -6,6 +6,7 @@ extern CImage imgBackground;
 
 void set_bk(int ID);
 void reset_bk(int ID);
+void clear_bk();
 #define draw_bk(way)\
 {\
 CPaintDC dc(this);\
