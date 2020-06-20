@@ -6,11 +6,13 @@
 #include"background.h"
 #include "MyButton.h"
 
+
 // CGobangDlg 对话框
 class CGobangDlg : public CDialogEx
 {
 // 构造
 public:
+	CString str1;
 	CGobangDlg(CWnd* pParent = nullptr);	// 标准构造函数
 
 // 对话框数据

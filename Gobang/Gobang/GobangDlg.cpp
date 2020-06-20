@@ -8,6 +8,7 @@
 #include "GobangDlg.h"
 #include "afxdialogex.h"
 #include "Game.h"
+#include "MFCApplication2Dlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -193,6 +194,7 @@ HCURSOR CGobangDlg::OnQueryDragIcon()
 void CGobangDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//开始游戏
 	Game game;
 	game.DoModal();
 }
@@ -201,7 +203,9 @@ void CGobangDlg::OnBnClickedButton1()
 void CGobangDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
-
+	//载入进度
+	CMFCApplication2Dlg select;
+	select.DoModal();
 }
 
 void CGobangDlg::OnBnClickedButton3()
