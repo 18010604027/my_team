@@ -19,3 +19,10 @@ void reset_bk(int ID)
 	imgBackground.Destroy();
 	imgBackground.LoadFromResource(hIns, ID);
 }
+void clear_bk()
+{
+	bmpBackground.Detach();
+	bmpBackground.DeleteObject();
+	imgBackground.Detach();
+	imgBackground.Destroy();
+}

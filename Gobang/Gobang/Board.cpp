@@ -27,6 +27,10 @@ CBoard::CBoard()
 }
 CBoard::~CBoard()
 {
+	white.Detach();
+	white.Destroy();
+	white.Detach();
+	black.Destroy();
 	dc.DeleteDC();
 	white.Destroy();
 	black.Destroy();

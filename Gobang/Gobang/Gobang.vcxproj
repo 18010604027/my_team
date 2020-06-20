@@ -191,7 +191,6 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gobang.h" />
     <ClInclude Include="GobangDlg.h" />
-    <ClInclude Include="MFCApplication2Dlg.h" />
     <ClInclude Include="MyButton.h" />
     <ClInclude Include="MyList.h" />
     <ClInclude Include="pch.h" />
@@ -207,7 +206,6 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gobang.cpp" />
     <ClCompile Include="GobangDlg.cpp" />
-    <ClCompile Include="MFCApplication2Dlg.cpp" />
     <ClCompile Include="MyButton.cpp" />
     <ClCompile Include="MyList.cpp" />
     <ClCompile Include="pch.cpp">
