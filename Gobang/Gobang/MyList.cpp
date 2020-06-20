@@ -227,6 +227,7 @@ void CMyList::Draw()
 	}
 
 	pdc->BitBlt(rect.left, rect.top, rect.Width(), rect.Height(), &dc, 0, 0, SRCCOPY);
+	dc.DeleteDC();
 }
 void CMyList::OnEnable(BOOL bEnable)
 {
