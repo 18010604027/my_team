@@ -186,8 +186,10 @@
     <ClInclude Include="background.h" />
     <ClInclude Include="Board.h" />
     <ClInclude Include="chess_man.h" />
+    <ClInclude Include="Dudang.h" />
     <ClInclude Include="file_name.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Fupan.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gobang.h" />
     <ClInclude Include="GobangDlg.h" />
@@ -202,7 +204,9 @@
     <ClCompile Include="background.cpp" />
     <ClCompile Include="Board.cpp" />
     <ClCompile Include="chess_man.h.cpp" />
+    <ClCompile Include="Dudang.cpp" />
     <ClCompile Include="file_name.cpp" />
+    <ClCompile Include="Fupan.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Gobang.cpp" />
     <ClCompile Include="GobangDlg.cpp" />
