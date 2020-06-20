@@ -118,6 +118,7 @@ void Game::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//保存进度
+	int x = 1;
 	Chess_man.save(x);
 }
 
@@ -206,6 +207,7 @@ BOOL Game::OnInitDialog()
 	board.SetBkImage(L"bmp\\木制棋盘.bmp");//这里输入实际地址
 	return TRUE;  // return TRUE unless you set the focus to a control
 			  // 异常: OCX 属性页应返回 FALSE
+
 }
 void Game::OnPaint()
 {

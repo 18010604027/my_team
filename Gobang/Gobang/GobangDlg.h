@@ -35,6 +35,9 @@ protected:
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
+	Rule rule;
+	CBoard board;
+	chess_man Chess_man;
 	CMyButton button1;
 	afx_msg void OnBnClickedButton1();
 	CMyButton button2;

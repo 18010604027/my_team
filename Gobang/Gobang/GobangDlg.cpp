@@ -8,7 +8,10 @@
 #include "GobangDlg.h"
 #include "afxdialogex.h"
 #include "Game.h"
-#include "MFCApplication2Dlg.h"
+#include "chess_man.h"
+#include "Board.h"
+#include "Rule.h"
+
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -204,8 +207,8 @@ void CGobangDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//载入进度
-	CMFCApplication2Dlg select;
-	select.DoModal();
+	//CMFCAPP select;
+	//select.DoModal;
 }
 
 void CGobangDlg::OnBnClickedButton3()
@@ -216,6 +219,8 @@ void CGobangDlg::OnBnClickedButton3()
 void CGobangDlg::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//CMFCAPP back;
+	//back.DoMoal;
 }
 void CGobangDlg::OnBnClickedButton5()
 {
