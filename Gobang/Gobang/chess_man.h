@@ -35,5 +35,6 @@ public:
 	void jumpup();							//这是跳到上一步
 	void jumpdown();						//这是跳到下一步，复盘的时候用的
 	chess get_chess();						//这是得到当前那一步的那个棋子的指针
+	~chess_man();
 };
 

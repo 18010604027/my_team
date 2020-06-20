@@ -197,3 +197,25 @@ chess chess_man::get_chess()
 	temp.z = now->chess1.z;
 	return temp;
 }
+chess_man::~chess_man()
+{
+	if (length == 0)
+	{
+		delete head;
+		delete last;
+		head = nullptr;
+		last = nullptr;
+		return;
+	}
+	else
+	{
+		while (head->next != nullptr)
+		{
+			chess_node* temp = head;
+			head = head->next;
+			delete temp;
+		}
+		delete head;
+		head = nullptr;
+	}
+}
