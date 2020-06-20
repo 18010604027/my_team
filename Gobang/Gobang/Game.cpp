@@ -199,8 +199,7 @@ BOOL Game::OnInitDialog()
 			int x = c.x, y = c.y, z = c.z;
 			board.ChangeChess2(x, y, z);
 			rule.change(c);
-			Chess_man.jumpdown();
-		} while (Chess_man.jumpdown() == 0);
+		} while (Chess_man.jumpdown());
 	}
 	else if (azbycx == 2)
 	{
@@ -210,7 +209,7 @@ BOOL Game::OnInitDialog()
 		GetDlgItem(IDC_BUTTON4)->ShowWindow(SW_HIDE);
 		GetDlgItem(IDC_BUTTON5)->ShowWindow(SW_HIDE);
 		GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_SHOW);
 		int i = 2;
 		Chess_man.initial(file2, i);
 		chess c;

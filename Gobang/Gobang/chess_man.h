@@ -26,7 +26,8 @@ private:
 	int length;
 public:
 	chess_man();							//构造函数开始新游戏的时候用的
-	chess_man(string file1, int i);					//这是重载构造函数，载入进度或者复盘的时候用的
+	void initial();
+	void initial(string file1, int i);
 	void change_file(string file2);			//这个实在是不知道用来干什么用的
 //注意，这里函数名字是creat_chess,creat后面没有e。
 	void creat_chess(chess chess2);		   //这里是新建一个结点，下一步棋用的
