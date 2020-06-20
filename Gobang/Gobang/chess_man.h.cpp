@@ -181,13 +181,28 @@ void chess_man::save(int x)
 		file_out.close();
 	}
 }
-void chess_man::jumpup()//这个应该是改变指针now的值，使之指向上一个
+bool chess_man::jumpup()//这个应该是改变指针now的值，使之指向上一个
 {
-	now = now->prev;
+	if (now->prev != head)
+	{
+		now = now->prev;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
-void chess_man::jumpdown()
+bool chess_man::jumpdown()
 {
-	now = now->next;
+	if (now->next != last)
+	{
+		now = now->next;
+	}
+	else
+	{
+		return false;
+	}
 }
 chess chess_man::get_chess()
 {
@@ -196,4 +211,26 @@ chess chess_man::get_chess()
 	temp.y = now->chess1.y;
 	temp.z = now->chess1.z;
 	return temp;
+}
+chess_man::~chess_man()
+{
+	if (length == 0)
+	{
+		delete head;
+		delete last;
+		head = nullptr;
+		last = nullptr;
+		return;
+	}
+	else
+	{
+		while (head->next != nullptr)
+		{
+			chess_node* temp = head;
+			head = head->next;
+			delete temp;
+		}
+		delete head;
+		head = nullptr;
+	}
 }

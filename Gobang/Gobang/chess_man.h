@@ -32,8 +32,9 @@ public:
 	void creat_chess(chess chess2);		   //这里是新建一个结点，下一步棋用的
 	void delete_chess();					//这是删除一个结点，悔棋的时候用的
 	void save(int x);//（1（读档）, 2（复盘））;//这是保存进度，注意为了读档和为了复盘这是两种不同的保存，要用不同的文件后缀
-	void jumpup();							//这是跳到上一步
-	void jumpdown();						//这是跳到下一步，复盘的时候用的
+	bool jumpup();							//这是跳到上一步
+	bool jumpdown();						//这是跳到下一步，复盘的时候用的
 	chess get_chess();						//这是得到当前那一步的那个棋子的指针
+	~chess_man();
 };
 
