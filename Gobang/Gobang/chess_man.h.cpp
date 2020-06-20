@@ -2,6 +2,10 @@
 #include"chess_man.h" 
 chess_man::chess_man()						//这个构造函数应该要读文件才对
 {
+	
+}
+void chess_man::initial()
+{
 	head = new chess_node;
 	last = new chess_node;
 	head->next = last;
@@ -13,8 +17,8 @@ chess_man::chess_man()						//这个构造函数应该要读文件才对
 	file = { 0 };
 	now = head->next;						//一开始now指针是指向head得下一个的空间
 }
-//这个复制构造函数是载入进度或者复盘的时候用的，所以要读文件
-chess_man::chess_man(string file1, int i)			//为什么这里要有一个参数？
+
+void chess_man::initial(string file1, int i)
 {
 	if (i == 1)
 	{
