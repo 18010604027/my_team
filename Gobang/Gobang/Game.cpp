@@ -55,6 +55,8 @@ END_MESSAGE_MAP()
 // Game 消息处理程序
 LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 {
+	if (azbycx == 2)
+		return;
 	if (win)
 	{
 		return 0;

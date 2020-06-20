@@ -5,6 +5,8 @@
 #pragma once
 #include"background.h"
 #include "MyButton.h"
+#include "Rule.h"
+#include "Board.h"
 
 
 // CGobangDlg 对话框

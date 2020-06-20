@@ -9,8 +9,6 @@
 #include "afxdialogex.h"
 #include "Game.h"
 #include "chess_man.h"
-#include "Board.h"
-#include "Rule.h"
 #include "Fupan.h"
 #include "Dudang.h"
 
