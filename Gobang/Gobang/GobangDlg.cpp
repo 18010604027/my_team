@@ -11,6 +11,8 @@
 #include "chess_man.h"
 #include "Board.h"
 #include "Rule.h"
+#include "Fupan.h"
+#include "Dudang.h"
 
 
 #ifdef _DEBUG
@@ -36,6 +38,8 @@ public:
 // 实现
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedButton6();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -48,6 +52,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_BN_CLICKED(IDC_BUTTON6, &CAboutDlg::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 
@@ -199,6 +204,7 @@ void CGobangDlg::OnBnClickedButton1()
 	// TODO: 在此添加控件通知处理程序代码
 	//开始游戏
 	Game game;
+	game.azbycx = 0;
 	game.DoModal();
 }
 
@@ -207,8 +213,10 @@ void CGobangDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//载入进度
-	//CMFCAPP select;
-	//select.DoModal;
+	Game game;
+	game.azbycx = 1;
+	Dudang select;
+	select.DoModal();
 }
 
 void CGobangDlg::OnBnClickedButton3()
@@ -219,8 +227,10 @@ void CGobangDlg::OnBnClickedButton3()
 void CGobangDlg::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	//CMFCAPP back;
-	//back.DoMoal;
+	Game game;
+	game.azbycx = 2;
+	Fupan back;
+	back.DoModal();
 }
 void CGobangDlg::OnBnClickedButton5()
 {

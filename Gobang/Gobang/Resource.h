@@ -20,6 +20,8 @@
 #define IDC_BOARD                       1005
 #define IDC_SCROLLBAR1                  1006
 #define IDC_S                           1007
+#define IDC_BUTTON6                     1008
+#define IDC_BUTTON7                     1009
 
 // Next default values for new objects
 // 
@@ -27,7 +29,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        139
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1008
+#define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

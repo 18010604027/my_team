@@ -11,6 +11,7 @@ class Game : public CDialogEx
 	DECLARE_DYNAMIC(Game)
 
 public:
+	
 	Game(CWnd* pParent = nullptr);   // 标准构造函数
 	virtual ~Game();
 	// 对话框数据
@@ -23,6 +24,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
+	int azbycx;//0开始 1读档 2复盘
 	bool ch;
 	bool AI;
 	Rule rule;
@@ -46,4 +48,8 @@ public:
 	CBoard board;
 	afx_msg void OnStnClickedBoard();
 	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);
+	CMyButton gbutton6;
+	CMyButton gbutton7;
+	afx_msg void OnBnClickedButton7();
+	afx_msg void OnBnClickedButton6();
 };
