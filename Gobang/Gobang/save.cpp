@@ -78,7 +78,6 @@ BOOL save::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	// TODO:  在此添加额外的初始化
-	reset_bk(IDB_BITMAP2);
 	yes.SetTextColor(RGB(255, 255, 255));
 	yes.SetBkColor(RGB(0, 0, 0));
 	yes.SetDiaphaneity(100, 180, 10);

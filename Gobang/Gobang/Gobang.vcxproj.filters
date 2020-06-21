@@ -131,6 +131,9 @@
     <Image Include="bmp\game.bmp">
       <Filter>资源文件</Filter>
     </Image>
+    <Image Include="bmp\name.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Text Include="allname1.txt">

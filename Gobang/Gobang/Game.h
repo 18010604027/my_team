@@ -53,4 +53,6 @@ public:
 	CMyButton gbutton7;
 	afx_msg void OnBnClickedButton7();
 	afx_msg void OnBnClickedButton6();
+	CMyButton gbutton8;
+	afx_msg void OnBnClickedButton8();
 };

@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="bmp\game.bmp" />
+    <Image Include="bmp\name.bmp" />
     <Image Include="bmp\Welcome.bmp" />
     <Image Include="res\Gobang.ico" />
   </ItemGroup>
