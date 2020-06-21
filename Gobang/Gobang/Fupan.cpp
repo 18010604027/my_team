@@ -15,7 +15,7 @@
 IMPLEMENT_DYNAMIC(Fupan, CDialogEx)
 
 Fupan::Fupan(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_DIALOG2, pParent)
+	: CDialogEx(IDD_DIALOG3, pParent)
 {
 
 }
@@ -29,16 +29,22 @@ void Fupan::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_SCROLLBAR1, mylist);
 	DDX_Control(pDX, IDC_S, scrbar);
+	DDX_Control(pDX, IDC_BUTTON2, button2);
+	DDX_Control(pDX, IDC_BUTTON3, button3);
+	DDX_Control(pDX, IDC_BUTTON1, button_);
 }
 
 
 BEGIN_MESSAGE_MAP(Fupan, CDialogEx)
-	ON_NOTIFY(NM_THEMECHANGED, IDC_SCROLLBAR1, &Fupan::OnNMThemeChangedScrollbar1)
 	ON_BN_CLICKED(IDC_BUTTON1, &Fupan::OnBnClickedButton1)
 	ON_MESSAGE(180, MyMsgHandler)
 	ON_WM_CTLCOLOR()
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
+	ON_WM_NCHITTEST()
+	ON_WM_PAINT()
+	ON_BN_CLICKED(IDC_BUTTON2, &Fupan::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &Fupan::OnBnClickedButton3)
 END_MESSAGE_MAP()
 
 
@@ -48,17 +54,22 @@ LRESULT Fupan::MyMsgHandler(WPARAM w, LPARAM l)
 {
 	int i = 0;
 	name* temp;
-	head_name = _name1.get_name1();//这里改为了get_name1()
+	head_name = _name1.get_name2();//这里改为了get_name1()
 	temp = head_name;
 	for (i = 0; i <= w; i++)
 	{
 		temp = temp->next;
 	}
-	Game g1;//这是游戏窗口的变量，str1是这个对象的一个变量用这个变量来储存文件名然后传递给她
+	ShowWindow(SW_HIDE);
+	Game game;
+	game.azbycx = 2;
 	string str_1;
 	str_1 = temp->na;
-	g1.str1 = str_1.c_str();
-	g1.DoModal();
+	game.str1 = str_1.c_str();
+	game.DoModal();
+
+
+	CDialogEx::OnOK();
 	/*
 	CString str;
 	str.Format(L"%d",w);
@@ -174,6 +185,12 @@ BOOL Fupan::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 	reset_bk(IDB_BITMAP2);
+	button2.SetTextColor(RGB(255, 255, 255));
+	button2.SetBkColor(RGB(0, 0, 0));
+	button2.SetDiaphaneity(100, 180, 10);
+	button3.SetTextColor(RGB(255, 255, 255));
+	button3.SetBkColor(RGB(0, 0, 0));
+	button3.SetDiaphaneity(100, 180, 10);
 	/*
 	for (int i = 0; i < 30; i++)
 	{
@@ -184,7 +201,7 @@ BOOL Fupan::OnInitDialog()
 	}
 	*/
 	int i = 0;
-	head_name = _name1.get_name1();
+	head_name = _name1.get_name2();
 	name* p1 = head_name;
 	for (i = 0; i < _name1.length; i++)//不能写i <= _name1.length
 	{
@@ -221,6 +238,10 @@ BOOL Fupan::OnInitDialog()
 		return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 	}
 }
+void Fupan::OnPaint()
+{
+	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
+}
 
 
 HBRUSH Fupan::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
@@ -230,7 +251,7 @@ HBRUSH Fupan::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	// TODO:  在此更改 DC 的任何特性
 	int ID = pWnd->GetDlgCtrlID();
 	//判断控件ID为需要设置的标签时
-	if (ID == IDC_SCROLLBAR1)
+	if (ID == IDC_S)
 	{
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
 	}
@@ -308,4 +329,31 @@ BOOL Fupan::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 
 	return CDialogEx::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+void Fupan::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void Fupan::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+LRESULT Fupan::OnNcHitTest(CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ScreenToClient(&point);
+	CRect rc;
+	GetClientRect(&rc);
+	if (rc.PtInRect(point))
+	{
+		return HTCAPTION;
+	}
+	else
+	{
+		return CDialog::OnNcHitTest(point);
+	}
+	return CDialogEx::OnNcHitTest(point);
 }

@@ -10,6 +10,7 @@
 #include"chess_man.h"
 #include"file_name.h"
 #include"Game.h"
+#include"MyButton.h"
 // Dudang 对话框
 
 IMPLEMENT_DYNAMIC(Dudang, CDialogEx)
@@ -29,6 +30,8 @@ void Dudang::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_SCROLLBAR1, mylist);
 	DDX_Control(pDX, IDC_S, scrbar);
+	DDX_Control(pDX, IDC_BUTTON2, button2);
+	DDX_Control(pDX, IDC_BUTTON3, button3);
 }
 
 BEGIN_MESSAGE_MAP(Dudang, CDialogEx)
@@ -38,6 +41,10 @@ BEGIN_MESSAGE_MAP(Dudang, CDialogEx)
 	ON_WM_CTLCOLOR()
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
+	ON_WM_NCHITTEST()
+	ON_BN_CLICKED(IDC_BUTTON2, &Dudang::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &Dudang::OnBnClickedButton3)
+	ON_WM_PAINT()
 END_MESSAGE_MAP()
 
 
@@ -53,12 +60,18 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	{
 		temp = temp->next;
 	}
-
-	Game g1;//这是游戏窗口的变量，str1是这个对象的一个变量用这个变量来储存文件名然后传递给她
+	ShowWindow(SW_HIDE);
+	Game game;
+	game.azbycx = 1;
 	string str_1;
-	str_1= temp->na;
-	g1.str1 = str_1.c_str();
-	g1.DoModal();
+	str_1 = temp->na;
+	game.str1 = str_1.c_str();
+	game.DoModal();
+
+
+	CDialogEx::OnOK();
+	
+	
 	/*
 	这里需要和谷朋朋商量一下怎么返回给她
 	*/
@@ -189,6 +202,12 @@ BOOL Dudang::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 	reset_bk(IDB_BITMAP2);
+	button2.SetTextColor(RGB(255, 255, 255));
+	button2.SetBkColor(RGB(0, 0, 0));
+	button2.SetDiaphaneity(100, 180, 10);
+	button3.SetTextColor(RGB(255, 255, 255));
+	button3.SetBkColor(RGB(0, 0, 0));
+	button3.SetDiaphaneity(100, 180, 10);
 	/*
 	for (int i = 0; i < 30; i++)
 	{
@@ -237,6 +256,11 @@ BOOL Dudang::OnInitDialog()
 	}
 }
 
+void Dudang::OnPaint()
+{
+	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
+}
+
 
 HBRUSH Dudang::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
@@ -245,7 +269,7 @@ HBRUSH Dudang::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	// TODO:  在此更改 DC 的任何特性
 	int ID = pWnd->GetDlgCtrlID();
 	//判断控件ID为需要设置的标签时
-	if (ID == IDC_SCROLLBAR1)
+	if (ID == IDC_S)
 	{
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
 	}
@@ -324,3 +348,36 @@ BOOL Dudang::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 	return CDialogEx::OnMouseWheel(nFlags, zDelta, pt);
 }
+
+
+void Dudang::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//最小化—
+}
+
+
+void Dudang::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//退出×
+}
+LRESULT Dudang::OnNcHitTest(CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ScreenToClient(&point);
+	CRect rc;
+	GetClientRect(&rc);
+	if (rc.PtInRect(point))
+	{
+		return HTCAPTION;
+	}
+	else
+	{
+		return CDialog::OnNcHitTest(point);
+	}
+	return CDialogEx::OnNcHitTest(point);
+}
+
+
+

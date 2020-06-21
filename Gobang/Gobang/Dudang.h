@@ -2,6 +2,7 @@
 #include"MyList.h"
 #include"background.h"
 #include"file_name.h"
+#include"MyButton.h"
 // Dudang 对话框
 
 class Dudang : public CDialogEx
@@ -33,4 +34,10 @@ public:
 	CScrollBar mylist;
 	CMyList scrbar;
 	afx_msg BOOL OnMouseWheel(UINT nFlags, short zDelta, CPoint pt);
+	CMyButton button2;
+	CMyButton button3;
+	afx_msg void OnBnClickedButton2();
+	afx_msg void OnBnClickedButton3();
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnPaint();
 };

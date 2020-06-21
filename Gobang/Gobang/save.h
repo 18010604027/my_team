@@ -24,10 +24,16 @@ protected:
 public:
 	CMyButton yes;
 	CMyButton no;
-	CString edit;
+	CEdit edit;
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
 	virtual BOOL OnInitDialog();
 	chess_man Chess_man;
+	afx_msg LRESULT OnNcHitTest(CPoint point);
+	afx_msg void OnPaint();
+	CMyButton button1;
+	CMyButton button2;
+	afx_msg void OnBnClickedButton1();
+	afx_msg void OnBnClickedButton2();
 };

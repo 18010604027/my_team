@@ -36,6 +36,10 @@ void Game::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON6, gbutton6);
 	DDX_Control(pDX, IDC_BUTTON7, gbutton7);
 	DDX_Control(pDX, IDC_BUTTON8, gbutton8);
+	//  DDX_Control(pDX, IDC_BUTTON9, button9);
+	//  DDX_Control(pDX, IDC_BUTTON10, button10);
+	DDX_Control(pDX, IDC_BUTTON9, gbutton9);
+	DDX_Control(pDX, IDC_BUTTON10, gbutton10);
 }
 
 BEGIN_MESSAGE_MAP(Game, CDialogEx)
@@ -46,12 +50,13 @@ BEGIN_MESSAGE_MAP(Game, CDialogEx)
 	ON_WM_NCHITTEST()
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
-	//ON_BN_CLICKED(IDC_BUTTON5, &Game::OnBnClickedButton5)
-	//ON_STN_CLICKED(IDC_BOARD, &Game::OnStnClickedBoard)
+	ON_BN_CLICKED(IDC_BUTTON5, &Game::OnBnClickedButton5)
 	ON_MESSAGE(190, MyBoardDown)
 	ON_BN_CLICKED(IDC_BUTTON7, &Game::OnBnClickedButton7)
 	ON_BN_CLICKED(IDC_BUTTON6, &Game::OnBnClickedButton6)
 	ON_BN_CLICKED(IDC_BUTTON8, &Game::OnBnClickedButton8)
+	ON_BN_CLICKED(IDC_BUTTON9, &Game::OnBnClickedButton9)
+	ON_BN_CLICKED(IDC_BUTTON10, &Game::OnBnClickedButton10)
 END_MESSAGE_MAP()
 
 
@@ -64,12 +69,16 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 		{
 			return 0;
 		}
+		if (!change)
+		{
+			change = true;
+		}
 		ch = !ch;
 		board.ChangeChess(x, y, ch + 1);
 		chess chess;
 		chess.x = x, chess.y = y, chess.z = ch + 1;
 		rule.change(chess);
-		chess_man->creat_chess(chess);
+		Chess_man.creat_chess(chess);
 		if (rule.judge(chess))
 		{
 			win = true;
@@ -88,7 +97,7 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 			chess = rule.AI(ch + 1);
 			board.ChangeChess(chess.x, chess.y, ch + 1);
 			rule.change(chess);
-			chess_man->creat_chess(chess);
+			Chess_man.creat_chess(chess);
 			if (rule.judge(chess))
 			{
 				win = true;
@@ -104,6 +113,7 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 		}
 		return 0;
 	}
+	return 0;
 }
 
 void Game::OnBnClickedButton1()
@@ -111,29 +121,39 @@ void Game::OnBnClickedButton1()
 	// TODO: 在此添加控件通知处理程序代码
 	//悔棋
 	chess c1;
-	c1=Chess_man.get_chess();
+	c1 = Chess_man.get_chess();
 	int _x = c1.x, _y = c1.y, _m = 0;
 	board.ChangeChess(_x, _y, _m);
 	rule.change(c1);
 	Chess_man.delete_chess();
-} 
+}
 
 void Game::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//返回
-	if (MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNO) == IDNO)
+	int rem;
+	if (change && azbycx != 2)
 	{
-		Game::OnOK();
-	}
-	else
-	{
-		save Save;
-		if (Save.DoModal() == IDOK)
+		rem = MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNOCANCEL);
+		if (rem == IDCANCEL)
 		{
-			Chess_man.save(1);
+			return;
+		}
+		else if (rem == IDYES)
+		{
+			save Save;
+			if (Save.DoModal() == IDOK)
+			{
+				Chess_man.save(1);
+			}
+			else
+			{
+				return;
+			}
 		}
 	}
+	Game::OnOK();
 }
 
 
@@ -145,6 +165,7 @@ void Game::OnBnClickedButton3()
 	if (Save.DoModal() == IDOK)
 	{
 		Chess_man.save(1);
+		change = false;
 	}
 }
 
@@ -152,19 +173,98 @@ void Game::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//重新开始
-	if (MessageBox(_T("是否存档？"), _T("提醒："), MB_YESNO) == IDNO)
+	int rem;
+	if (change)
 	{
-		rule;
-		board;
+		if (!win)
+		{
+			rem = MessageBox(_T("是否存档？"), _T("提醒："), MB_YESNOCANCEL);
+			if (rem == IDCANCEL)
+			{
+				return;
+			}
+			else if (rem == IDYES)
+			{
+				save Save;
+				if (Save.DoModal() == IDOK)
+				{
+					Chess_man.save(1);
+				}
+				else
+				{
+					return;
+				}
+			}
+			rem = MessageBox(_T("是否记录对局？"), _T("提醒："), MB_YESNO);
+			if (rem == IDYES)
+			{
+				save Save;
+				if (Save.DoModal() == IDOK)
+				{
+					Chess_man.save(2);
+				}
+				else
+				{
+					return;
+				}
+			}
+		}
+		else
+		{
+			rem = MessageBox(_T("是否记录对局？"), _T("提醒："), MB_YESNOCANCEL);
+			if (rem == IDCANCEL)
+			{
+				return;
+			}
+			else if(rem==IDYES)
+			{
+				save Save;
+				if (Save.DoModal() == IDOK)
+				{
+					Chess_man.save(2);
+				}
+				else
+				{
+					return;
+				}
+			}
+		}
+
 	}
 	else
 	{
-		save Save;
-		if (Save.DoModal() == IDOK)
+		rem = MessageBox(_T("是否记录对局？"), _T("提醒："), MB_YESNOCANCEL);
+		if (rem == IDCANCEL)
 		{
-			Chess_man.save(2);
+			return;
+		}
+		else if (rem == IDYES)
+		{
+			save Save;
+			if (Save.DoModal() == IDOK)
+			{
+				Chess_man.save(2);
+			}
+			else
+			{
+				return;
+			}
 		}
 	}
+	chess chess;
+	while (Chess_man.jumpdown());
+	/*while ()//等徐杰的检查函数
+	{
+		chess = Chess_man.get_chess();
+		chess.z = 0;
+		rule.change(chess);
+		board.ChangeChess(chess.x, chess.y, chess.z);
+		Chess_man.delete_chess();
+	}	*/
+	win = false;
+	AI = false;
+	ch = false;
+	change = false;
 }
 
 void Game::OnBnClickedButton5()
@@ -172,12 +272,20 @@ void Game::OnBnClickedButton5()
 	AI = !AI;
 	if (AI)
 	{
+		if (!change)
+		{
+			change = true;
+		}
+		if (win)
+		{
+			return;
+		}
 		chess chess;
 		ch = !ch;;
 		chess = rule.AI(ch + 1);
 		board.ChangeChess(chess.x, chess.y, ch + 1);
 		rule.change(chess);
-		chess_man->creat_chess(chess);
+		Chess_man.creat_chess(chess);
 		if (rule.judge(chess))
 		{
 			win = true;
@@ -219,11 +327,15 @@ BOOL Game::OnInitDialog()
 	GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
-	if (azbycx == 1)
+	if (azbycx == 0)
 	{
-	
+		Chess_man.initial();
+	}
+	else if (azbycx == 1)
+	{
+
 		std::string str(CW2A(str1.GetString()));
-		Chess_man.initial(str,1);
+		Chess_man.initial(str, 1);
 		do
 		{
 			chess c;
@@ -245,15 +357,11 @@ BOOL Game::OnInitDialog()
 		GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_SHOW);
 		std::string str(CW2A(str1.GetString()));
 		Chess_man.initial(str, 2);
-		chess c;
-		c = Chess_man.get_chess();
-		int x = c.x, y = c.y, z = c.z;
-		board.ChangeChess2(x, y, z);
-		rule.change(c);
 	}
 	win = false;
 	AI = false;
 	ch = false;
+	change = false;
 	// TODO: 在此处添加消息处理程序代码
 	reset_bk(IDB_BITMAP2);
 	gbutton1.SetTextColor(RGB(255, 255, 255));
@@ -280,16 +388,21 @@ BOOL Game::OnInitDialog()
 	gbutton8.SetTextColor(RGB(255, 255, 255));
 	gbutton8.SetBkColor(RGB(0, 0, 0));
 	gbutton8.SetDiaphaneity(100, 180, 10);
+	gbutton9.SetTextColor(RGB(255, 255, 255));
+	gbutton9.SetBkColor(RGB(0, 0, 0));
+	gbutton9.SetDiaphaneity(100, 180, 10);
+	gbutton10.SetTextColor(RGB(255, 255, 255));
+	gbutton10.SetBkColor(RGB(0, 0, 0));
+	gbutton10.SetDiaphaneity(100, 180, 10);
 	board.SetChessImage(L"png\\黑棋.png", 2);
 	board.SetChessImage(L"png\\白棋.png", 1);
 	board.SetBkImage(L"bmp\\木制棋盘.bmp");//这里输入实际地址
 	return TRUE;  // return TRUE unless you set the focus to a control
 			  // 异常: OCX 属性页应返回 FALSE
-		
+
 }
 void Game::OnPaint()
 {
-
 	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
 }
 
@@ -311,19 +424,28 @@ HBRUSH Game::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 
 
-void Game::OnStnClickedBoard()
-{
-	// TODO: 在此添加控件通知处理程序代码
-}
+
 void Game::OnBnClickedButton6()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	// TODO: 在此添加控件通知处理程序代码	
 	Chess_man.jumpup();
+	chess chess = Chess_man.get_chess();
+	chess.z = 0;
+	board.ChangeChess(chess.x, chess.y, 0);
+	rule.change(chess);
+	
 }
 void Game::OnBnClickedButton7()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	Chess_man.jumpdown();
+	chess chess = Chess_man.get_chess();
+	board.ChangeChess(chess.x, chess.y, chess.z);
+	rule.change(chess);
+	if (!Chess_man.jumpdown())
+	{
+		MessageBox(L"结束^_^", L"温馨提示");
+	}
+	
 }
 
 
@@ -332,4 +454,22 @@ void Game::OnBnClickedButton8()
 	// TODO: 在此添加控件通知处理程序代码
 	//退出
 	Game::OnOK();
+}
+
+
+void Game::OnBnClickedButton9()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//最小化—
+}
+
+
+void Game::OnBnClickedButton10()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//退出×
+}
+
+void Game::OnStnClickedBoard()
+{
 }

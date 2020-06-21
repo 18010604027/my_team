@@ -11,7 +11,7 @@ class Game : public CDialogEx
 	DECLARE_DYNAMIC(Game)
 
 public:
-	
+
 	Game(CWnd* pParent = nullptr);   // 标准构造函数
 	virtual ~Game();
 	// 对话框数据
@@ -31,28 +31,32 @@ public:
 	Rule rule;
 	bool win;
 	chess_man Chess_man;
-	chess_man *chess_man;
+	bool change;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
 	afx_msg void OnBnClickedButton4();
+	afx_msg void OnBnClickedButton5();
+	afx_msg void OnBnClickedButton6();
+	afx_msg void OnBnClickedButton7();
+	afx_msg void OnBnClickedButton8();
+	afx_msg void OnBnClickedButton9();
+	afx_msg void OnBnClickedButton10();
+	afx_msg void OnStnClickedBoard();
+	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
+	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);
 	afx_msg LRESULT OnNcHitTest(CPoint point);
 	afx_msg void OnPaint();
+	virtual BOOL OnInitDialog();
 	CMyButton gbutton1;
 	CMyButton gbutton2;
 	CMyButton gbutton3;
 	CMyButton gbutton4;
 	CMyButton gbutton5;
-	virtual BOOL OnInitDialog();
-	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
-	afx_msg void OnBnClickedButton5();
-	CBoard board;
-	afx_msg void OnStnClickedBoard();
-	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);
 	CMyButton gbutton6;
 	CMyButton gbutton7;
-	afx_msg void OnBnClickedButton7();
-	afx_msg void OnBnClickedButton6();
 	CMyButton gbutton8;
-	afx_msg void OnBnClickedButton8();
+	CMyButton gbutton9;
+	CMyButton gbutton10;
+	CBoard board;
 };
