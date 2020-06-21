@@ -201,6 +201,17 @@ BOOL Dudang::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	CRect rect;
+	GetWindowRect(rect);
+	MoveWindow(rect.left, rect.top, 530, 410, TRUE);
+	button2.GetWindowRect(rect);
+	button2.MoveWindow(310, 5, rect.Width(), rect.Height(), TRUE);
+	button3.GetWindowRect(rect);
+	button3.MoveWindow(415, 5, rect.Width(), rect.Height(), TRUE);
+	scrbar.GetWindowRect(rect);
+	scrbar.MoveWindow(310, 110, rect.Width(), rect.Height(), TRUE);
+	mylist.GetWindowRect(rect);
+	mylist.MoveWindow(510, 110, rect.Width(), rect.Height(), TRUE);
 	reset_bk(IDB_BITMAP2);
 	button2.SetTextColor(RGB(255, 255, 255));
 	button2.SetBkColor(RGB(0, 0, 0));
