@@ -24,7 +24,7 @@ protected:
 public:
 	CMyButton yes;
 	CMyButton no;
-	CString edit;
+	CEdit edit;
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();

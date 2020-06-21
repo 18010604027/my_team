@@ -54,11 +54,15 @@ LRESULT Fupan::MyMsgHandler(WPARAM w, LPARAM l)
 	{
 		temp = temp->next;
 	}
-	Game g1;//这是游戏窗口的变量，str1是这个对象的一个变量用这个变量来储存文件名然后传递给她
+	Game game;
+	game.azbycx = 2;
 	string str_1;
 	str_1 = temp->na;
-	g1.str1 = str_1.c_str();
-	g1.DoModal();
+	game.str1 = str_1.c_str();
+	game.DoModal();
+
+
+	CDialogEx::OnOK();
 	/*
 	CString str;
 	str.Format(L"%d",w);
@@ -136,7 +140,7 @@ BOOL Fupan::OnInitDialog()
 	}
 	*/
 	int i = 0;
-	head_name = _name1.get_name1();
+	head_name = _name1.get_name2();
 	name* p1 = head_name;
 	for (i = 0; i < _name1.length; i++)//不能写i <= _name1.length
 	{

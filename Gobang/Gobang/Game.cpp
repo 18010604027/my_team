@@ -46,7 +46,7 @@ BEGIN_MESSAGE_MAP(Game, CDialogEx)
 	ON_WM_NCHITTEST()
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
-	//ON_BN_CLICKED(IDC_BUTTON5, &Game::OnBnClickedButton5)
+	ON_BN_CLICKED(IDC_BUTTON5, &Game::OnBnClickedButton5)
 	//ON_STN_CLICKED(IDC_BOARD, &Game::OnStnClickedBoard)
 	ON_MESSAGE(190, MyBoardDown)
 	ON_BN_CLICKED(IDC_BUTTON7, &Game::OnBnClickedButton7)
@@ -64,12 +64,16 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 		{
 			return 0;
 		}
+		if (!change)
+		{
+			change = true;
+		}
 		ch = !ch;
 		board.ChangeChess(x, y, ch + 1);
 		chess chess;
 		chess.x = x, chess.y = y, chess.z = ch + 1;
 		rule.change(chess);
-		chess_man->creat_chess(chess);
+		Chess_man.creat_chess(chess);
 		if (rule.judge(chess))
 		{
 			win = true;
@@ -88,7 +92,7 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 			chess = rule.AI(ch + 1);
 			board.ChangeChess(chess.x, chess.y, ch + 1);
 			rule.change(chess);
-			chess_man->creat_chess(chess);
+			Chess_man.creat_chess(chess);
 			if (rule.judge(chess))
 			{
 				win = true;
@@ -104,6 +108,7 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 		}
 		return 0;
 	}
+	return 0;
 }
 
 void Game::OnBnClickedButton1()
@@ -111,29 +116,39 @@ void Game::OnBnClickedButton1()
 	// TODO: 在此添加控件通知处理程序代码
 	//悔棋
 	chess c1;
-	c1=Chess_man.get_chess();
+	c1 = Chess_man.get_chess();
 	int _x = c1.x, _y = c1.y, _m = 0;
 	board.ChangeChess(_x, _y, _m);
 	rule.change(c1);
 	Chess_man.delete_chess();
-} 
+}
 
 void Game::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//返回
-	if (MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNO) == IDNO)
+	int rem;
+	if (change && azbycx != 2)
 	{
-		Game::OnOK();
-	}
-	else
-	{
-		save Save;
-		if (Save.DoModal() == IDOK)
+		rem = MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNOCANCEL);
+		if (rem == IDCANCEL)
 		{
-			Chess_man.save(1);
+			return;
+		}
+		else if (rem == IDOK)
+		{
+			save Save;
+			if (Save.DoModal() == IDOK)
+			{
+				Chess_man.save(1);
+			}
+			else
+			{
+				return;
+			}
 		}
 	}
+	Game::OnOK();
 }
 
 
@@ -145,6 +160,7 @@ void Game::OnBnClickedButton3()
 	if (Save.DoModal() == IDOK)
 	{
 		Chess_man.save(1);
+		change = false;
 	}
 }
 
@@ -152,19 +168,78 @@ void Game::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//重新开始
-	if (MessageBox(_T("是否存档？"), _T("提醒："), MB_YESNO) == IDNO)
+	int rem;
+	if (change)
 	{
-		rule;
-		board;
-	}
-	else
-	{
-		save Save;
-		if (Save.DoModal() == IDOK)
+		if (!win)
 		{
-			Chess_man.save(2);
+			rem = MessageBox(_T("是否存档？"), _T("提醒："), MB_YESNOCANCEL);
+			if (rem == IDCANCEL)
+			{
+				return;
+			}
+			else if (rem == IDOK)
+			{
+				save Save;
+				if (Save.DoModal() == IDOK)
+				{
+					Chess_man.save(2);
+				}
+				else
+				{
+					return;
+				}
+			}
+			rem = MessageBox(_T("是否记录对局？"), _T("提醒："), MB_YESNO);
+			if (rem == IDYES)
+			{
+				save Save;
+				if (Save.DoModal() == IDOK)
+				{
+					Chess_man.save(1);
+				}
+				else
+				{
+					return;
+				}
+			}
 		}
+		else
+		{
+			rem = MessageBox(_T("是否记录对局？"), _T("提醒："), MB_YESNOCANCEL);
+			if (rem == IDCANCEL)
+			{
+				return;
+			}
+			else if(rem==IDOK)
+			{
+				save Save;
+				if (Save.DoModal() == IDOK)
+				{
+					Chess_man.save(1);
+				}
+				else
+				{
+					return;
+				}
+			}
+		}
+
 	}
+	chess chess;
+	while (Chess_man.jumpdown());
+	/*while ()//等徐杰的检查函数
+	{
+		chess = Chess_man.get_chess();
+		chess.z = 0;
+		rule.change(chess);
+		board.ChangeChess(chess.x, chess.y, chess.z);
+		Chess_man.delete_chess();
+	}	*/
+	win = false;
+	AI = false;
+	ch = false;
+	change = false;
 }
 
 void Game::OnBnClickedButton5()
@@ -172,12 +247,20 @@ void Game::OnBnClickedButton5()
 	AI = !AI;
 	if (AI)
 	{
+		if (!change)
+		{
+			change = true;
+		}
+		if (win)
+		{
+			return;
+		}
 		chess chess;
 		ch = !ch;;
 		chess = rule.AI(ch + 1);
 		board.ChangeChess(chess.x, chess.y, ch + 1);
 		rule.change(chess);
-		chess_man->creat_chess(chess);
+		Chess_man.creat_chess(chess);
 		if (rule.judge(chess))
 		{
 			win = true;
@@ -219,11 +302,15 @@ BOOL Game::OnInitDialog()
 	GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
-	if (azbycx == 1)
+	if (azbycx == 0)
 	{
-	
+		Chess_man.initial();
+	}
+	else if (azbycx == 1)
+	{
+
 		std::string str(CW2A(str1.GetString()));
-		Chess_man.initial(str,1);
+		Chess_man.initial(str, 1);
 		do
 		{
 			chess c;
@@ -254,6 +341,7 @@ BOOL Game::OnInitDialog()
 	win = false;
 	AI = false;
 	ch = false;
+	change = false;
 	// TODO: 在此处添加消息处理程序代码
 	reset_bk(IDB_BITMAP2);
 	gbutton1.SetTextColor(RGB(255, 255, 255));
@@ -285,11 +373,10 @@ BOOL Game::OnInitDialog()
 	board.SetBkImage(L"bmp\\木制棋盘.bmp");//这里输入实际地址
 	return TRUE;  // return TRUE unless you set the focus to a control
 			  // 异常: OCX 属性页应返回 FALSE
-		
+
 }
 void Game::OnPaint()
 {
-
 	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
 }
 

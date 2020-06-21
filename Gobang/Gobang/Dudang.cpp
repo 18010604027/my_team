@@ -53,12 +53,17 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	{
 		temp = temp->next;
 	}
-
-	Game g1;//这是游戏窗口的变量，str1是这个对象的一个变量用这个变量来储存文件名然后传递给她
+	Game game;
+	game.azbycx = 1;
 	string str_1;
-	str_1= temp->na;
-	g1.str1 = str_1.c_str();
-	g1.DoModal();
+	str_1 = temp->na;
+	game.str1 = str_1.c_str();
+	game.DoModal();
+
+
+	CDialogEx::OnOK();
+	
+	
 	/*
 	这里需要和谷朋朋商量一下怎么返回给她
 	*/

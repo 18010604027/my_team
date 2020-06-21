@@ -88,7 +88,7 @@ void CMyList::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	m_bDown = true;
 	Draw();
-	::SendMessage(::AfxGetMainWnd()->m_hWnd, 180, Choose, 0);
+	::SendMessage(GetParent()->m_hWnd, 180, Choose, 0);
 	CStatic::OnLButtonDown(nFlags, point);
 }
 void CMyList::OnLButtonUp(UINT nFlags, CPoint point)
