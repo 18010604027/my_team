@@ -36,6 +36,10 @@ void Game::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON6, gbutton6);
 	DDX_Control(pDX, IDC_BUTTON7, gbutton7);
 	DDX_Control(pDX, IDC_BUTTON8, gbutton8);
+	//  DDX_Control(pDX, IDC_BUTTON9, button9);
+	//  DDX_Control(pDX, IDC_BUTTON10, button10);
+	DDX_Control(pDX, IDC_BUTTON9, gbutton9);
+	DDX_Control(pDX, IDC_BUTTON10, gbutton10);
 }
 
 BEGIN_MESSAGE_MAP(Game, CDialogEx)
@@ -51,6 +55,8 @@ BEGIN_MESSAGE_MAP(Game, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON7, &Game::OnBnClickedButton7)
 	ON_BN_CLICKED(IDC_BUTTON6, &Game::OnBnClickedButton6)
 	ON_BN_CLICKED(IDC_BUTTON8, &Game::OnBnClickedButton8)
+	ON_BN_CLICKED(IDC_BUTTON9, &Game::OnBnClickedButton9)
+	ON_BN_CLICKED(IDC_BUTTON10, &Game::OnBnClickedButton10)
 END_MESSAGE_MAP()
 
 
@@ -382,6 +388,12 @@ BOOL Game::OnInitDialog()
 	gbutton8.SetTextColor(RGB(255, 255, 255));
 	gbutton8.SetBkColor(RGB(0, 0, 0));
 	gbutton8.SetDiaphaneity(100, 180, 10);
+	gbutton9.SetTextColor(RGB(255, 255, 255));
+	gbutton9.SetBkColor(RGB(0, 0, 0));
+	gbutton9.SetDiaphaneity(100, 180, 10);
+	gbutton10.SetTextColor(RGB(255, 255, 255));
+	gbutton10.SetBkColor(RGB(0, 0, 0));
+	gbutton10.SetDiaphaneity(100, 180, 10);
 	board.SetChessImage(L"png\\黑棋.png", 2);
 	board.SetChessImage(L"png\\白棋.png", 1);
 	board.SetBkImage(L"bmp\\木制棋盘.bmp");//这里输入实际地址
@@ -442,4 +454,18 @@ void Game::OnBnClickedButton8()
 	// TODO: 在此添加控件通知处理程序代码
 	//退出
 	Game::OnOK();
+}
+
+
+void Game::OnBnClickedButton9()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//最小化—
+}
+
+
+void Game::OnBnClickedButton10()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//退出×
 }
