@@ -5,7 +5,8 @@
 #pragma once
 #include"background.h"
 #include "MyButton.h"
-
+#include"Dudang.h"
+#include"Fupan.h"
 
 // CGobangDlg 对话框
 class CGobangDlg : public CDialogEx

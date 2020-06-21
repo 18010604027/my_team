@@ -8,8 +8,6 @@
 #include "GobangDlg.h"
 #include "afxdialogex.h"
 #include "Game.h"
-#include "MFCApplication2Dlg.h"
-
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
@@ -202,19 +200,26 @@ void CGobangDlg::OnBnClickedButton1()
 
 void CGobangDlg::OnBnClickedButton2()
 {
+	
 	// TODO: 在此添加控件通知处理程序代码
 	//载入进度
-	CMFCApplication2Dlg select;
-	select.DoModal();
+	//CMFCApplication2Dlg select;
+	//select.DoModal();
+	Dudang du;
+	du.DoModal();
+	//reset_bk(IDB_BITMAP1);
 }
 
 void CGobangDlg::OnBnClickedButton3()
 {
+
 	// TODO: 在此添加控件通知处理程序代码
 	CGobangDlg::OnOK();
 }
 void CGobangDlg::OnBnClickedButton4()
 {
+	//Fupan fu;
+	//fu.DoModal();
 	// TODO: 在此添加控件通知处理程序代码
 }
 void CGobangDlg::OnBnClickedButton5()
