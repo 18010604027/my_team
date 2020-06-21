@@ -15,7 +15,7 @@
 IMPLEMENT_DYNAMIC(Fupan, CDialogEx)
 
 Fupan::Fupan(CWnd* pParent /*=nullptr*/)
-	: CDialogEx(IDD_DIALOG2, pParent)
+	: CDialogEx(IDD_DIALOG3, pParent)
 {
 
 }
