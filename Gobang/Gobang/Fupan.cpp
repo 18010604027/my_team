@@ -31,7 +31,6 @@ void Fupan::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_S, scrbar);
 	DDX_Control(pDX, IDC_BUTTON2, button2);
 	DDX_Control(pDX, IDC_BUTTON3, button3);
-	DDX_Control(pDX, IDC_BUTTON1, button_);
 }
 
 
