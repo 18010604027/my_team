@@ -92,21 +92,31 @@ void Dudang::OnBnClickedButton1()
 	strPath = strPath.Left(nTemp);
 	nTemp = strPath.ReverseFind('\\');
 	strPath = strPath.Left(nTemp + 1);
-	std::string str_2(CW2A(strPath.GetString()));
+	std::string str_2(CW2A(strPath.GetString()));//这句话好像没啥用
+
 	CString FilePathName;
 	CFileDialog dlg(TRUE, //TRUE为OPEN对话框，FALSE为SAVE AS对话框
 		NULL,
 		NULL,
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		(LPCTSTR)_TEXT("复盘 (*.ld)|*.ld|All Files (*.*)|*.*||"),
+		(LPCTSTR)_TEXT("读档 (*.ld)|*.ld|All Files (*.*)|*.*||"),
 		NULL);
 	dlg.m_ofn.lpstrInitialDir = strPath;
 	if (dlg.DoModal() == IDOK)
 	{
 		FilePathName = dlg.GetPathName(); //文件名保存在了FilePathName里
+		nTemp = FilePathName.GetAllocLength() - FilePathName.ReverseFind('\\');
+		FilePathName = FilePathName.Right(nTemp - 1);
+		nTemp = FilePathName.ReverseFind('.');
+		FilePathName = FilePathName.Left(nTemp);
+		//MessageBox(FilePathName);
 		Game game;
 		game.str1 = FilePathName;
 		game.DoModal();
+
+
+
+
 		//CString cstr;
 		//std::string str(CW2A(FilePathName.GetString()));
 		//chess_man c1(str,1);//这就读取了一个文件里的数据

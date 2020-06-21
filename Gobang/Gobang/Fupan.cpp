@@ -95,12 +95,16 @@ void Fupan::OnBnClickedButton1()
 		NULL,
 		NULL,
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		(LPCTSTR)_TEXT("复盘 (*.ld)|*.ld|All Files (*.*)|*.*||"),
+		(LPCTSTR)_TEXT("复盘 (*.rp)|*.rp|All Files (*.*)|*.*||"),
 		NULL);
 	dlg.m_ofn.lpstrInitialDir = strPath;
 	if (dlg.DoModal() == IDOK)
 	{
 		FilePathName = dlg.GetPathName(); //文件名保存在了FilePathName里
+		nTemp = FilePathName.GetAllocLength() - FilePathName.ReverseFind('\\');
+		FilePathName = FilePathName.Right(nTemp - 1);
+		nTemp = FilePathName.ReverseFind('.');
+		FilePathName = FilePathName.Left(nTemp);
 		Game game;
 		game.str1 = FilePathName;
 		game.DoModal();
