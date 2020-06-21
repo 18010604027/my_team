@@ -194,9 +194,8 @@ BOOL Game::OnInitDialog()
 	if (azbycx == 1)
 	{
 		int i = 1;
-		std::string strStr;
-		strStr=str1.GetBuffer(0);
-		Chess_man.initial(str1,i);
+		std::string str(CW2A(str1.GetString()));
+		Chess_man.initial(str,i);
 		do
 		{
 			chess c;
@@ -216,7 +215,8 @@ BOOL Game::OnInitDialog()
 		GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_SHOW);
 		int i = 2;
-		Chess_man.initial(str1, 1);
+		std::string str(CW2A(str1.GetString()));
+		Chess_man.initial(str, 1);
 		chess c;
 		c = Chess_man.get_chess();
 		int x = c.x, y = c.y, z = c.z;
