@@ -197,10 +197,12 @@ void CGobangDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//开始游戏
+	ShowWindow(SW_HIDE);
 	Game game;
 	game.azbycx = 0;
 	game.DoModal();
 	reset_bk(IDB_BITMAP1);
+	ShowWindow(SW_SHOW);
 }
 
 
@@ -208,9 +210,11 @@ void CGobangDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//载入进度
+	ShowWindow(SW_HIDE);
 	Dudang select;
 	select.DoModal();
 	reset_bk(IDB_BITMAP1);
+	ShowWindow(SW_SHOW);
 }
 
 void CGobangDlg::OnBnClickedButton3()
@@ -221,9 +225,11 @@ void CGobangDlg::OnBnClickedButton3()
 void CGobangDlg::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	ShowWindow(SW_HIDE);
 	Fupan back;
 	back.DoModal();
 	reset_bk(IDB_BITMAP1);
+	ShowWindow(SW_SHOW);
 }
 void CGobangDlg::OnBnClickedButton5()
 {

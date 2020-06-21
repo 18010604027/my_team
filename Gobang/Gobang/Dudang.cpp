@@ -58,6 +58,7 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	{
 		temp = temp->next;
 	}
+	ShowWindow(SW_HIDE);
 	Game game;
 	game.azbycx = 1;
 	string str_1;

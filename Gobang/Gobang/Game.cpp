@@ -51,7 +51,6 @@ BEGIN_MESSAGE_MAP(Game, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_CTLCOLOR()
 	ON_BN_CLICKED(IDC_BUTTON5, &Game::OnBnClickedButton5)
-	//ON_STN_CLICKED(IDC_BOARD, &Game::OnStnClickedBoard)
 	ON_MESSAGE(190, MyBoardDown)
 	ON_BN_CLICKED(IDC_BUTTON7, &Game::OnBnClickedButton7)
 	ON_BN_CLICKED(IDC_BUTTON6, &Game::OnBnClickedButton6)
@@ -141,7 +140,7 @@ void Game::OnBnClickedButton2()
 		{
 			return;
 		}
-		else if (rem == IDOK)
+		else if (rem == IDYES)
 		{
 			save Save;
 			if (Save.DoModal() == IDOK)
@@ -184,12 +183,12 @@ void Game::OnBnClickedButton4()
 			{
 				return;
 			}
-			else if (rem == IDOK)
+			else if (rem == IDYES)
 			{
 				save Save;
 				if (Save.DoModal() == IDOK)
 				{
-					Chess_man.save(2);
+					Chess_man.save(1);
 				}
 				else
 				{
@@ -202,7 +201,7 @@ void Game::OnBnClickedButton4()
 				save Save;
 				if (Save.DoModal() == IDOK)
 				{
-					Chess_man.save(1);
+					Chess_man.save(2);
 				}
 				else
 				{
@@ -217,12 +216,12 @@ void Game::OnBnClickedButton4()
 			{
 				return;
 			}
-			else if(rem==IDOK)
+			else if(rem==IDYES)
 			{
 				save Save;
 				if (Save.DoModal() == IDOK)
 				{
-					Chess_man.save(1);
+					Chess_man.save(2);
 				}
 				else
 				{
@@ -231,6 +230,26 @@ void Game::OnBnClickedButton4()
 			}
 		}
 
+	}
+	else
+	{
+		rem = MessageBox(_T("是否记录对局？"), _T("提醒："), MB_YESNOCANCEL);
+		if (rem == IDCANCEL)
+		{
+			return;
+		}
+		else if (rem == IDYES)
+		{
+			save Save;
+			if (Save.DoModal() == IDOK)
+			{
+				Chess_man.save(2);
+			}
+			else
+			{
+				return;
+			}
+		}
 	}
 	chess chess;
 	while (Chess_man.jumpdown());
@@ -338,11 +357,6 @@ BOOL Game::OnInitDialog()
 		GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_SHOW);
 		std::string str(CW2A(str1.GetString()));
 		Chess_man.initial(str, 2);
-		chess c;
-		c = Chess_man.get_chess();
-		int x = c.x, y = c.y, z = c.z;
-		board.ChangeChess2(x, y, z);
-		rule.change(c);
 	}
 	win = false;
 	AI = false;
@@ -410,19 +424,28 @@ HBRUSH Game::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 
 
 
-void Game::OnStnClickedBoard()
-{
-	// TODO: 在此添加控件通知处理程序代码
-}
+
 void Game::OnBnClickedButton6()
 {
-	// TODO: 在此添加控件通知处理程序代码
+	// TODO: 在此添加控件通知处理程序代码	
 	Chess_man.jumpup();
+	chess chess = Chess_man.get_chess();
+	chess.z = 0;
+	board.ChangeChess(chess.x, chess.y, 0);
+	rule.change(chess);
+	
 }
 void Game::OnBnClickedButton7()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	Chess_man.jumpdown();
+	chess chess = Chess_man.get_chess();
+	board.ChangeChess(chess.x, chess.y, chess.z);
+	rule.change(chess);
+	if (!Chess_man.jumpdown())
+	{
+		MessageBox(L"结束^_^", L"温馨提示");
+	}
+	
 }
 
 

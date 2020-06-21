@@ -48,12 +48,13 @@ LRESULT Fupan::MyMsgHandler(WPARAM w, LPARAM l)
 {
 	int i = 0;
 	name* temp;
-	head_name = _name1.get_name1();//这里改为了get_name1()
+	head_name = _name1.get_name2();//这里改为了get_name1()
 	temp = head_name;
 	for (i = 0; i <= w; i++)
 	{
 		temp = temp->next;
 	}
+	ShowWindow(SW_HIDE);
 	Game game;
 	game.azbycx = 2;
 	string str_1;
