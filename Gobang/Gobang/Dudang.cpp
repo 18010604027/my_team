@@ -215,7 +215,7 @@ HBRUSH Dudang::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	// TODO:  在此更改 DC 的任何特性
 	int ID = pWnd->GetDlgCtrlID();
 	//判断控件ID为需要设置的标签时
-	if (ID == IDC_SCROLLBAR1)
+	if (ID == IDC_S)
 	{
 		return (HBRUSH)GetStockObject(NULL_BRUSH);
 	}
