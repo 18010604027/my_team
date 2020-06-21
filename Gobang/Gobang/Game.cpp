@@ -32,6 +32,8 @@ void Game::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON4, gbutton4);
 	DDX_Control(pDX, IDC_BOARD, board);
 	DDX_Control(pDX, IDC_BUTTON5, gbutton5);
+	DDX_Control(pDX, IDC_BUTTON6, gbutton6);
+	DDX_Control(pDX, IDC_BUTTON7, gbutton7);
 }
 
 BEGIN_MESSAGE_MAP(Game, CDialogEx)
@@ -45,12 +47,16 @@ BEGIN_MESSAGE_MAP(Game, CDialogEx)
 	//ON_BN_CLICKED(IDC_BUTTON5, &Game::OnBnClickedButton5)
 	//ON_STN_CLICKED(IDC_BOARD, &Game::OnStnClickedBoard)
 	ON_MESSAGE(190, MyBoardDown)
+	ON_BN_CLICKED(IDC_BUTTON7, &Game::OnBnClickedButton7)
+	ON_BN_CLICKED(IDC_BUTTON6, &Game::OnBnClickedButton6)
 END_MESSAGE_MAP()
 
 
 // Game 消息处理程序
 LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 {
+	if (azbycx == 2)
+		return;
 	if (win)
 	{
 		return 0;
@@ -118,7 +124,8 @@ void Game::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//保存进度
-	//Chess_man.save(x);
+	int x = 1;
+	Chess_man.save(x);
 }
 
 void Game::OnBnClickedButton4()
@@ -181,6 +188,38 @@ BOOL Game::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
+	if (azbycx == 1)
+	{
+		int i = 1;
+		Chess_man.initial(file2,i);
+		do
+		{
+			chess c;
+			c = Chess_man.get_chess();
+			int x = c.x, y = c.y, z = c.z;
+			board.ChangeChess2(x, y, z);
+			rule.change(c);
+		} while (Chess_man.jumpdown());
+	}
+	else if (azbycx == 2)
+	{
+		GetDlgItem(IDC_BUTTON1)->ShowWindow(SW_HIDE);
+		GetDlgItem(IDC_BUTTON2)->ShowWindow(SW_HIDE);
+		GetDlgItem(IDC_BUTTON3)->ShowWindow(SW_HIDE);
+		GetDlgItem(IDC_BUTTON4)->ShowWindow(SW_HIDE);
+		GetDlgItem(IDC_BUTTON5)->ShowWindow(SW_HIDE);
+		GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_SHOW);
+		int i = 2;
+		Chess_man.initial(file2, i);
+		chess c;
+		c = Chess_man.get_chess();
+		int x = c.x, y = c.y, z = c.z;
+		board.ChangeChess2(x, y, z);
+		rule.change(c);
+	}
 	win = false;
 	AI = false;
 	ch = false;
@@ -201,11 +240,18 @@ BOOL Game::OnInitDialog()
 	gbutton5.SetTextColor(RGB(255, 255, 255));
 	gbutton5.SetBkColor(RGB(0, 0, 0));
 	gbutton5.SetDiaphaneity(100, 180, 10);
+	gbutton6.SetTextColor(RGB(255, 255, 255));
+	gbutton6.SetBkColor(RGB(0, 0, 0));
+	gbutton6.SetDiaphaneity(100, 180, 10);
+	gbutton7.SetTextColor(RGB(255, 255, 255));
+	gbutton7.SetBkColor(RGB(0, 0, 0));
+	gbutton7.SetDiaphaneity(100, 180, 10);
 	board.SetChessImage(L"png\\黑棋.png", 2);
 	board.SetChessImage(L"png\\白棋.png", 1);
 	board.SetBkImage(L"bmp\\木制棋盘.bmp");//这里输入实际地址
 	return TRUE;  // return TRUE unless you set the focus to a control
 			  // 异常: OCX 属性页应返回 FALSE
+		
 }
 void Game::OnPaint()
 {
@@ -234,4 +280,18 @@ HBRUSH Game::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 void Game::OnStnClickedBoard()
 {
 	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void Game::OnBnClickedButton7()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Chess_man.jumpdown();
+}
+
+
+void Game::OnBnClickedButton6()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Chess_man.jumpup();
 }
