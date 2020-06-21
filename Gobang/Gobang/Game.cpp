@@ -55,35 +55,16 @@ END_MESSAGE_MAP()
 // Game 消息处理程序
 LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 {
-	if (azbycx == 2)
-		return;
-	if (win)
+	if (azbycx != 2)
 	{
-		return 0;
-	}
-	ch = !ch;
-	board.ChangeChess(x, y, ch + 1);
-	chess chess;
-	chess.x = x, chess.y = y, chess.z = ch + 1;
-	rule.change(chess);
-	chess_man->creat_chess(chess);
-	if (rule.judge(chess))
-	{
-		win = true;
-		if (ch)
+		if (win)
 		{
-			MessageBox(L"黑棋胜", L"温馨提示");
+			return 0;
 		}
-		else
-		{
-			MessageBox(L"白棋胜", L"温馨提示");
-		}
-	}
-	if (AI)
-	{
-		ch = !ch;;
-		chess = rule.AI(ch + 1);
-		board.ChangeChess(chess.x, chess.y, ch + 1);
+		ch = !ch;
+		board.ChangeChess(x, y, ch + 1);
+		chess chess;
+		chess.x = x, chess.y = y, chess.z = ch + 1;
 		rule.change(chess);
 		chess_man->creat_chess(chess);
 		if (rule.judge(chess))
@@ -98,8 +79,28 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 				MessageBox(L"白棋胜", L"温馨提示");
 			}
 		}
+		if (AI)
+		{
+			ch = !ch;;
+			chess = rule.AI(ch + 1);
+			board.ChangeChess(chess.x, chess.y, ch + 1);
+			rule.change(chess);
+			chess_man->creat_chess(chess);
+			if (rule.judge(chess))
+			{
+				win = true;
+				if (ch)
+				{
+					MessageBox(L"黑棋胜", L"温馨提示");
+				}
+				else
+				{
+					MessageBox(L"白棋胜", L"温馨提示");
+				}
+			}
+		}
+		return 0;
 	}
-	return 0;
 }
 
 void Game::OnBnClickedButton1()
@@ -193,7 +194,7 @@ BOOL Game::OnInitDialog()
 	if (azbycx == 1)
 	{
 		int i = 1;
-		Chess_man.initial(file2,i);
+		Chess_man.initial(str1,i);
 		do
 		{
 			chess c;
@@ -213,7 +214,7 @@ BOOL Game::OnInitDialog()
 		GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_SHOW);
 		int i = 2;
-		Chess_man.initial(file2, i);
+		Chess_man.initial(str1, 1);
 		chess c;
 		c = Chess_man.get_chess();
 		int x = c.x, y = c.y, z = c.z;
