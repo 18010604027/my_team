@@ -118,7 +118,7 @@ void Dudang::OnBnClickedButton1()
 	if (dlg.DoModal() == IDOK)
 	{
 		FilePathName = dlg.GetPathName(); //路径+文件名保存在了FilePathName里
-														
+
 		CString FilePathName2 = FilePathName;//FilePathName2将会保存文件名
 		CString FilePathName3 = FilePathName;//FilePathName3与FilePathName一样
 		nTemp = FilePathName2.GetAllocLength() - FilePathName2.ReverseFind('\\');//这四行是用来得到文件名的
@@ -165,10 +165,10 @@ void Dudang::OnBnClickedButton1()
 			}
 			else
 			{
-				str_temp3=str_temp3 + "(copy)";//这里会报错
+				str_temp3 = str_temp3 + "(copy)";//这里会报错
 			}
-			fstream file_temp("allname1.txt",ios::out|ios::app);//注意这里不能忘了app//还有一件事在复盘那里是allname2,别直接复制粘贴
-			file_temp<< str_temp3;
+			fstream file_temp("allname1.txt", ios::out | ios::app);//注意这里不能忘了app//还有一件事在复盘那里是allname2,别直接复制粘贴
+			file_temp << str_temp3;
 			file_temp.close();
 			FilePathName2 = str_temp3.c_str();
 

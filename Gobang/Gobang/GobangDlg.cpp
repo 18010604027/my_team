@@ -127,9 +127,25 @@ BOOL CGobangDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
-	CRect rect;	
-	GetWindowRect(rect);	
-	MoveWindow(rect.left, rect.top, 800, 500, TRUE);
+	{
+		CRect rect;
+		GetWindowRect(rect);
+		MoveWindow(rect.left, rect.top, 780, 500, TRUE);
+		button1.GetWindowRect(rect);
+		button1.MoveWindow(190, 220, rect.Width(), rect.Height(), TRUE);
+		button2.GetWindowRect(rect);
+		button2.MoveWindow(500, 220, rect.Width(), rect.Height(), TRUE);
+		button3.GetWindowRect(rect);
+		button3.MoveWindow(190, 310, rect.Width(), rect.Height(), TRUE);
+		button4.GetWindowRect(rect);
+		button4.MoveWindow(500, 310, rect.Width(), rect.Height(), TRUE);
+		button5.GetWindowRect(rect);
+		button5.MoveWindow(350, 380, rect.Width(), rect.Height(), TRUE);
+		button6.GetWindowRect(rect);
+		button6.MoveWindow(614, 0, rect.Width(), rect.Height(), TRUE);
+		button7.GetWindowRect(rect);
+		button7.MoveWindow(700, 0, rect.Width(), rect.Height(), TRUE);
+	}
 	set_bk(IDB_BITMAP1);
 	button1.SetTextColor(RGB(255, 255, 255));
 	button1.SetBkColor(RGB(0, 0, 0));

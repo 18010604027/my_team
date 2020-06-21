@@ -253,14 +253,14 @@ void Game::OnBnClickedButton4()
 	}
 	chess chess;
 	while (Chess_man.jumpdown());
-	/*while ()//等徐杰的检查函数
+	//while ()//等徐杰的检查函数
 	{
 		chess = Chess_man.get_chess();
 		chess.z = 0;
 		rule.change(chess);
 		board.ChangeChess(chess.x, chess.y, chess.z);
 		Chess_man.delete_chess();
-	}	*/
+	}	
 	win = false;
 	AI = false;
 	ch = false;
@@ -327,6 +327,35 @@ BOOL Game::OnInitDialog()
 	GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
+	{
+		CRect rect;
+		GetWindowRect(rect);
+		MoveWindow(rect.left, rect.top, 770, 630, TRUE);
+		gbutton1.GetWindowRect(rect);
+		gbutton1.MoveWindow(624, 50, rect.Width(), rect.Height(), TRUE);
+		gbutton2.GetWindowRect(rect);
+		gbutton2.MoveWindow(624, 100, rect.Width(), rect.Height(), TRUE);
+		gbutton3.GetWindowRect(rect);
+		gbutton3.MoveWindow(624, 150, rect.Width(), rect.Height(), TRUE);
+		gbutton4.GetWindowRect(rect);
+		gbutton4.MoveWindow(624, 200, rect.Width(), rect.Height(), TRUE);
+		gbutton5.GetWindowRect(rect);
+		gbutton5.MoveWindow(624, 250, rect.Width(), rect.Height(), TRUE);
+
+		
+		gbutton6.GetWindowRect(rect);
+		gbutton6.MoveWindow(624, 50, rect.Width(), rect.Height(), TRUE);
+		gbutton7.GetWindowRect(rect);
+		gbutton7.MoveWindow(624, 100, rect.Width(), rect.Height(), TRUE);
+		gbutton8.GetWindowRect(rect);
+		gbutton8.MoveWindow(624, 150, rect.Width(), rect.Height(), TRUE);
+
+
+		gbutton10.GetWindowRect(rect);
+		gbutton10.MoveWindow(680, 0, rect.Width(), rect.Height(), TRUE);
+		gbutton9.MoveWindow(607, 0, rect.Width(), rect.Height(), TRUE);
+
+	}
 	if (azbycx == 0)
 	{
 		Chess_man.initial();
