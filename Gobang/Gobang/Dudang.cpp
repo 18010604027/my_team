@@ -55,8 +55,10 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	}
 
 	Game g1;//这是游戏窗口的变量，str1是这个对象的一个变量用这个变量来储存文件名然后传递给她
-	//g1.str1 = temp->na;
-	//g1.DoModal();
+	string str_1;
+	str_1= temp->na;
+	g1.str1 = str_1.c_str();
+	g1.DoModal();
 	/*
 	这里需要和谷朋朋商量一下怎么返回给她
 	*/
@@ -81,27 +83,39 @@ void Dudang::OnNMThemeChangedScrollbar1(NMHDR* pNMHDR, LRESULT* pResult)
 
 void Dudang::OnBnClickedButton1()
 {
-
+	CString strPath;
+	wchar_t cCurrentFilePath[255];
+	int nTemp;
+	GetModuleFileName(NULL, cCurrentFilePath, 255);
+	strPath = cCurrentFilePath;
+	nTemp = strPath.ReverseFind('\\');
+	strPath = strPath.Left(nTemp);
+	nTemp = strPath.ReverseFind('\\');
+	strPath = strPath.Left(nTemp + 1);
+	std::string str_2(CW2A(strPath.GetString()));
 	CString FilePathName;
 	CFileDialog dlg(TRUE, //TRUE为OPEN对话框，FALSE为SAVE AS对话框
 		NULL,
 		NULL,
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		(LPCTSTR)_TEXT("复盘 (*.rp)|*.rp|All Files (*.*)|*.*||"),
+		(LPCTSTR)_TEXT("复盘 (*.ld)|*.ld|All Files (*.*)|*.*||"),
 		NULL);
-	dlg.m_ofn.lpstrInitialDir = L"c:\\users\\";
+	dlg.m_ofn.lpstrInitialDir = strPath;
 	if (dlg.DoModal() == IDOK)
 	{
 		FilePathName = dlg.GetPathName(); //文件名保存在了FilePathName里
+		Game game;
+		game.str1 = FilePathName;
+		game.DoModal();
 		//CString cstr;
-		std::string str(CW2A(FilePathName.GetString()));
-		//chess_man c1(str, 1);//这就读取了一个文件里的数据
+		//std::string str(CW2A(FilePathName.GetString()));
+		//chess_man c1(str,1);//这就读取了一个文件里的数据
+		//MessageBox(FilePathName);
 	}
 	else
 	{
 		return;
 	}
-	// TODO: 在此添加控件通知处理程序代码
 }
 
 
