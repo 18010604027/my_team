@@ -45,7 +45,6 @@ BEGIN_MESSAGE_MAP(Dudang, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON2, &Dudang::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &Dudang::OnBnClickedButton3)
 	ON_WM_PAINT()
-	ON_STN_CLICKED(IDC_S, &Dudang::OnStnClickedS)
 END_MESSAGE_MAP()
 
 
@@ -328,7 +327,3 @@ LRESULT Dudang::OnNcHitTest(CPoint point)
 
 
 
-void Dudang::OnStnClickedS()
-{
-	// TODO: 在此添加控件通知处理程序代码
-}

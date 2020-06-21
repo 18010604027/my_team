@@ -31,11 +31,11 @@ void Fupan::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_S, scrbar);
 	DDX_Control(pDX, IDC_BUTTON2, button2);
 	DDX_Control(pDX, IDC_BUTTON3, button3);
+	DDX_Control(pDX, IDC_BUTTON1, button_);
 }
 
 
 BEGIN_MESSAGE_MAP(Fupan, CDialogEx)
-	ON_NOTIFY(NM_THEMECHANGED, IDC_SCROLLBAR1, &Fupan::OnNMThemeChangedScrollbar1)
 	ON_BN_CLICKED(IDC_BUTTON1, &Fupan::OnBnClickedButton1)
 	ON_MESSAGE(180, MyMsgHandler)
 	ON_WM_CTLCOLOR()
