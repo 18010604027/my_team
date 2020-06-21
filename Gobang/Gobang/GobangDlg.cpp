@@ -198,6 +198,7 @@ void CGobangDlg::OnBnClickedButton1()
 	// TODO: 在此添加控件通知处理程序代码
 	//开始游戏
 	Game game;
+	game.azbycx = 0;
 	game.DoModal();
 }
 

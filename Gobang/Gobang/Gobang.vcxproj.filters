@@ -63,6 +63,9 @@
     <ClInclude Include="Fupan.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="save.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Gobang.cpp">
@@ -104,6 +107,9 @@
     <ClCompile Include="Fupan.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="save.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Gobang.rc">
@@ -123,6 +129,9 @@
       <Filter>资源文件</Filter>
     </Image>
     <Image Include="bmp\game.bmp">
+      <Filter>资源文件</Filter>
+    </Image>
+    <Image Include="bmp\name.bmp">
       <Filter>资源文件</Filter>
     </Image>
   </ItemGroup>

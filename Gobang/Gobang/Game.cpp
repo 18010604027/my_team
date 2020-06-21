@@ -7,6 +7,7 @@
 #include "afxdialogex.h"
 #include "Rule.h"
 #include "chess_man.h"
+#include "save.h"
 
 
 // Game 对话框
@@ -34,6 +35,7 @@ void Game::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON5, gbutton5);
 	DDX_Control(pDX, IDC_BUTTON6, gbutton6);
 	DDX_Control(pDX, IDC_BUTTON7, gbutton7);
+	DDX_Control(pDX, IDC_BUTTON8, gbutton8);
 }
 
 BEGIN_MESSAGE_MAP(Game, CDialogEx)
@@ -49,6 +51,7 @@ BEGIN_MESSAGE_MAP(Game, CDialogEx)
 	ON_MESSAGE(190, MyBoardDown)
 	ON_BN_CLICKED(IDC_BUTTON7, &Game::OnBnClickedButton7)
 	ON_BN_CLICKED(IDC_BUTTON6, &Game::OnBnClickedButton6)
+	ON_BN_CLICKED(IDC_BUTTON8, &Game::OnBnClickedButton8)
 END_MESSAGE_MAP()
 
 
@@ -106,6 +109,7 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 void Game::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//悔棋
 	chess c1;
 	c1=Chess_man.get_chess();
 	int _x = c1.x, _y = c1.y, _m = 0;
@@ -117,7 +121,19 @@ void Game::OnBnClickedButton1()
 void Game::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	Game::OnOK();
+	//返回
+	if (MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNO) == IDNO)
+	{
+		Game::OnOK();
+	}
+	else
+	{
+		save Save;
+		if (Save.DoModal() == IDOK)
+		{
+			Chess_man.save(1);
+		}
+	}
 }
 
 
@@ -125,18 +141,29 @@ void Game::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//保存进度
-	int x = 1;
-	Chess_man.save(x);
+	save Save;
+	if (Save.DoModal() == IDOK)
+	{
+		Chess_man.save(1);
+	}
 }
 
 void Game::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//重新开始
-	if (MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNO) == IDNO)
+	if (MessageBox(_T("是否存档？"), _T("提醒："), MB_YESNO) == IDNO)
 	{
 		rule;
 		board;
+	}
+	else
+	{
+		save Save;
+		if (Save.DoModal() == IDOK)
+		{
+			Chess_man.save(2);
+		}
 	}
 }
 
@@ -191,11 +218,12 @@ BOOL Game::OnInitDialog()
 	// TODO:  在此添加额外的初始化
 	GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
 	if (azbycx == 1)
 	{
-		int i = 1;
+	
 		std::string str(CW2A(str1.GetString()));
-		Chess_man.initial(str,i);
+		Chess_man.initial(str,1);
 		do
 		{
 			chess c;
@@ -214,9 +242,9 @@ BOOL Game::OnInitDialog()
 		GetDlgItem(IDC_BUTTON5)->ShowWindow(SW_HIDE);
 		GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_SHOW);
-		int i = 2;
+		GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_SHOW);
 		std::string str(CW2A(str1.GetString()));
-		Chess_man.initial(str, 1);
+		Chess_man.initial(str, 2);
 		chess c;
 		c = Chess_man.get_chess();
 		int x = c.x, y = c.y, z = c.z;
@@ -249,6 +277,9 @@ BOOL Game::OnInitDialog()
 	gbutton7.SetTextColor(RGB(255, 255, 255));
 	gbutton7.SetBkColor(RGB(0, 0, 0));
 	gbutton7.SetDiaphaneity(100, 180, 10);
+	gbutton8.SetTextColor(RGB(255, 255, 255));
+	gbutton8.SetBkColor(RGB(0, 0, 0));
+	gbutton8.SetDiaphaneity(100, 180, 10);
 	board.SetChessImage(L"png\\黑棋.png", 2);
 	board.SetChessImage(L"png\\白棋.png", 1);
 	board.SetBkImage(L"bmp\\木制棋盘.bmp");//这里输入实际地址
@@ -284,8 +315,11 @@ void Game::OnStnClickedBoard()
 {
 	// TODO: 在此添加控件通知处理程序代码
 }
-
-
+void Game::OnBnClickedButton6()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Chess_man.jumpup();
+}
 void Game::OnBnClickedButton7()
 {
 	// TODO: 在此添加控件通知处理程序代码
@@ -293,8 +327,9 @@ void Game::OnBnClickedButton7()
 }
 
 
-void Game::OnBnClickedButton6()
+void Game::OnBnClickedButton8()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	Chess_man.jumpup();
+	//退出
+	Game::OnOK();
 }
