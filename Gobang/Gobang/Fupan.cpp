@@ -41,6 +41,7 @@ BEGIN_MESSAGE_MAP(Fupan, CDialogEx)
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
 	ON_WM_NCHITTEST()
+	ON_WM_PAINT()
 	ON_BN_CLICKED(IDC_BUTTON2, &Fupan::OnBnClickedButton2)
 	ON_BN_CLICKED(IDC_BUTTON3, &Fupan::OnBnClickedButton3)
 END_MESSAGE_MAP()
@@ -136,8 +137,8 @@ BOOL Fupan::OnInitDialog()
 	// TODO:  在此添加额外的初始化
 	reset_bk(IDB_BITMAP2);
 	button2.SetTextColor(RGB(255, 255, 255));
-    button2.SetBkColor(RGB(0, 0, 0));
-    button2.SetDiaphaneity(100, 180, 10);
+	button2.SetBkColor(RGB(0, 0, 0));
+	button2.SetDiaphaneity(100, 180, 10);
 	button3.SetTextColor(RGB(255, 255, 255));
 	button3.SetBkColor(RGB(0, 0, 0));
 	button3.SetDiaphaneity(100, 180, 10);
