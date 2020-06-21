@@ -111,7 +111,7 @@ BOOL Fupan::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-	set_bk(IDB_BITMAP2);
+	reset_bk(IDB_BITMAP2);
 	/*
 	for (int i = 0; i < 30; i++)
 	{

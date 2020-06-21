@@ -31,7 +31,6 @@ void Dudang::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_S, scrbar);
 }
 
-
 BEGIN_MESSAGE_MAP(Dudang, CDialogEx)
 	ON_NOTIFY(NM_THEMECHANGED, IDC_SCROLLBAR1, &Dudang::OnNMThemeChangedScrollbar1)
 	ON_BN_CLICKED(IDC_BUTTON1, &Dudang::OnBnClickedButton1)
@@ -56,7 +55,7 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	}
 
 	Game g1;//这是游戏窗口的变量，str1是这个对象的一个变量用这个变量来储存文件名然后传递给她
-	//g1.str = temp->na;
+	//g1.str1 = temp->na;
 	//g1.DoModal();
 	/*
 	这里需要和谷朋朋商量一下怎么返回给她
@@ -111,7 +110,7 @@ BOOL Dudang::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-	set_bk(IDB_BITMAP2);
+	reset_bk(IDB_BITMAP2);
 	/*
 	for (int i = 0; i < 30; i++)
 	{
