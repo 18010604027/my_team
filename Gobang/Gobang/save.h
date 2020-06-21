@@ -1,5 +1,6 @@
 ﻿#pragma once
 #include "MyButton.h"
+#include "chess_man.h"
 
 // save 对话框
 
@@ -28,4 +29,5 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedCancel();
 	virtual BOOL OnInitDialog();
+	chess_man Chess_man;
 };

@@ -136,7 +136,7 @@ void Game::OnBnClickedButton3()
 	// TODO: 在此添加控件通知处理程序代码
 	//保存进度
 	save Save;
-	Save.DoModal();
+	Save.DoModal(); 
 	Chess_man.save(1);
 }
 

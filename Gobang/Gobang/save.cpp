@@ -7,6 +7,8 @@
 #include "afxdialogex.h"
 #include "MyButton.h"
 #include "background.h"
+#include "Game.h"
+
 
 // save 对话框
 
@@ -50,12 +52,18 @@ void save::OnEnChangeEdit1()
 	// 同时将 ENM_CHANGE 标志“或”运算到掩码中。
 
 	// TODO:  在此添加控件通知处理程序代码
+	
 }
 
 
 void save::OnBnClickedOk()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	Game* game = (Game*)GetParent();
+	CString str;
+	this->GetWindowText(str);//获取当前子窗口编辑框中的值
+	std::string str1(CW2A(str.GetString()));
+	game->Chess_man.change_file(str1);
 	CDialogEx::OnOK();
 }
 
@@ -69,7 +77,6 @@ void save::OnBnClickedCancel()
 BOOL save::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
 	// TODO:  在此添加额外的初始化
 	reset_bk(IDB_BITMAP2);
 	yes.SetTextColor(RGB(255, 255, 255));
