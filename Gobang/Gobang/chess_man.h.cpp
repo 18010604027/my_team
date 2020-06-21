@@ -120,16 +120,30 @@ void chess_man::delete_chess()//这里删除的是倒数第二个结点
 		return;
 	}
 	else {
-		//这里也可以直接用last，不用从头指针开始捋
-		chess_node* temp1, * temp2;
-		temp1 = last->prev;
-		temp2 = temp1->prev;
-		temp2->next = last;
-		last->prev = temp2;
-		delete temp1;
-		now = temp2;
-		length--;
-		return;
+		if (now->next == last)
+		{
+			chess_node* temp1, * temp2;
+			temp1 = last->prev;
+			temp2 = temp1->prev;
+			temp2->next = last;
+			last->prev = temp2;
+			delete temp1;
+			now = temp2;
+			length--;
+			return;
+		}
+		else
+		{
+			//这里也可以直接用last，不用从头指针开始捋
+			chess_node* temp1, * temp2;
+			temp1 = last->prev;
+			temp2 = temp1->prev;
+			temp2->next = last;
+			last->prev = temp2;
+			delete temp1;//注意，不能改now的值
+			length--;
+			return;
+		}
 	}
 }
 void chess_man::save(int x)
