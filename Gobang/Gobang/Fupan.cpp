@@ -31,6 +31,7 @@ void Fupan::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_S, scrbar);
 	DDX_Control(pDX, IDC_BUTTON2, button2);
 	DDX_Control(pDX, IDC_BUTTON3, button3);
+	DDX_Control(pDX, IDC_BUTTON1, button1);
 }
 
 
@@ -183,17 +184,22 @@ BOOL Fupan::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-	CRect rect;
-	GetWindowRect(rect);
-	MoveWindow(rect.left, rect.top, 530, 410,TRUE);
-	button2.GetWindowRect(rect);
-	button2.MoveWindow(310,5,rect.Width(), rect.Height(), TRUE);
-	button3.GetWindowRect(rect);
-	button3.MoveWindow(415,5, rect.Width(), rect.Height(), TRUE);
-	scrbar.GetWindowRect(rect);
-	scrbar.MoveWindow(310,110, rect.Width(), rect.Height(), TRUE);
-	mylist.GetWindowRect(rect);
-	mylist.MoveWindow(510,110,rect.Width(), rect.Height(), TRUE);
+	{
+		CRect rect;
+		GetWindowRect(rect);
+		MoveWindow(rect.left, rect.top, 270, 325, TRUE);
+		button1.GetWindowRect(rect);
+		button1.MoveWindow(220, 25, 48, 300, TRUE);
+		button2.GetWindowRect(rect);
+		button2.MoveWindow(127, 0, rect.Width(), rect.Height(), TRUE);
+		button3.GetWindowRect(rect);
+		button3.MoveWindow(200, 0, rect.Width(), rect.Height(), TRUE);
+		scrbar.GetWindowRect(rect);
+		scrbar.MoveWindow(0, 25, rect.Width(), rect.Height(), TRUE);
+		mylist.GetWindowRect(rect);
+		mylist.MoveWindow(200, 25, rect.Width(), 300, TRUE);
+	}
+	ModifyStyleEx(0, WS_EX_APPWINDOW);
 	reset_bk(IDB_BITMAP2);
 	button2.SetTextColor(RGB(255, 255, 255));
 	button2.SetBkColor(RGB(0, 0, 0));
@@ -344,12 +350,14 @@ BOOL Fupan::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 void Fupan::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	ShowWindow(SW_SHOWMINIMIZED);
 }
 
 
 void Fupan::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	CDialogEx::OnOK();
 }
 LRESULT Fupan::OnNcHitTest(CPoint point)
 {

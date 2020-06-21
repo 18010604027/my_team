@@ -96,7 +96,6 @@ BOOL save::OnInitDialog()
 		no.GetWindowRect(rect);
 		no.MoveWindow(225, 97, rect.Width(), rect.Height(), TRUE);
 
-	
 		button2.GetWindowRect(rect);
 		button2.MoveWindow(230, 0, rect.Width(), rect.Height(), TRUE);
 
@@ -136,10 +135,12 @@ LRESULT save::OnNcHitTest(CPoint point)
 }
 
 
+
 void save::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//×
+	CDialogEx::OnCancel();
 }
 
 

@@ -41,4 +41,5 @@ public:
 	afx_msg LRESULT OnNcHitTest(CPoint point);
 	afx_msg void OnPaint();
 	CMyButton button_;
+	CMyButton button1;
 };
