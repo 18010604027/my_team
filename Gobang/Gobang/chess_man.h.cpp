@@ -216,6 +216,7 @@ bool chess_man::jumpdown()
 	if (now->next != last)
 	{
 		now = now->next;
+		return true;
 	}
 	else
 	{
@@ -229,6 +230,17 @@ chess chess_man::get_chess()
 	temp.y = now->chess1.y;
 	temp.z = now->chess1.z;
 	return temp;
+}
+bool chess_man::check()
+{
+	if (length > 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 chess_man::~chess_man()
 {

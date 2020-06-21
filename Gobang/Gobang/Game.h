@@ -42,7 +42,6 @@ public:
 	afx_msg void OnBnClickedButton8();
 	afx_msg void OnBnClickedButton9();
 	afx_msg void OnBnClickedButton10();
-	afx_msg void OnStnClickedBoard();
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);
 	afx_msg LRESULT OnNcHitTest(CPoint point);

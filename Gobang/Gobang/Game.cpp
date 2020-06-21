@@ -253,7 +253,7 @@ void Game::OnBnClickedButton4()
 	}
 	chess chess;
 	while (Chess_man.jumpdown());
-	//while ()//等徐杰的检查函数
+	while (Chess_man.check())//等徐杰的检查函数
 	{
 		chess = Chess_man.get_chess();
 		chess.z = 0;
@@ -324,6 +324,7 @@ BOOL Game::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	ModifyStyleEx(0, WS_EX_APPWINDOW);
 	GetDlgItem(IDC_BUTTON6)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON7)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUTTON8)->ShowWindow(SW_HIDE);
@@ -450,10 +451,6 @@ HBRUSH Game::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	return hbr;
 }
 
-
-
-
-
 void Game::OnBnClickedButton6()
 {
 	// TODO: 在此添加控件通知处理程序代码	
@@ -476,20 +473,17 @@ void Game::OnBnClickedButton7()
 	}
 	
 }
-
-
 void Game::OnBnClickedButton8()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//退出
 	Game::OnOK();
 }
-
-
 void Game::OnBnClickedButton9()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//最小化—
+	PostMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 }
 
 
@@ -497,8 +491,6 @@ void Game::OnBnClickedButton10()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//退出×
+	OnBnClickedButton2();
 }
 
-void Game::OnStnClickedBoard()
-{
-}

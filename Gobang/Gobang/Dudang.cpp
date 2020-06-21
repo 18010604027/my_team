@@ -32,6 +32,7 @@ void Dudang::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_S, scrbar);
 	DDX_Control(pDX, IDC_BUTTON2, button2);
 	DDX_Control(pDX, IDC_BUTTON3, button3);
+	DDX_Control(pDX, IDC_BUTTON1, button1);
 }
 
 BEGIN_MESSAGE_MAP(Dudang, CDialogEx)
@@ -201,6 +202,22 @@ BOOL Dudang::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	{
+		CRect rect;
+		GetWindowRect(rect);
+		MoveWindow(rect.left, rect.top, 270, 325, TRUE);
+		button1.GetWindowRect(rect);
+		button1.MoveWindow(220, 25, 48, 300, TRUE);
+		button2.GetWindowRect(rect);
+		button2.MoveWindow(127, 0, rect.Width(), rect.Height(), TRUE);
+		button3.GetWindowRect(rect);
+		button3.MoveWindow(200, 0, rect.Width(), rect.Height(), TRUE);
+		scrbar.GetWindowRect(rect);
+		scrbar.MoveWindow(0, 25, rect.Width(), rect.Height(), TRUE);
+		mylist.GetWindowRect(rect);
+		mylist.MoveWindow(200, 25, rect.Width(), 300, TRUE);
+	}
+	ModifyStyleEx(0, WS_EX_APPWINDOW);
 	reset_bk(IDB_BITMAP2);
 	button2.SetTextColor(RGB(255, 255, 255));
 	button2.SetBkColor(RGB(0, 0, 0));
@@ -354,6 +371,7 @@ void Dudang::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//最小化—
+	PostMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 }
 
 
@@ -361,6 +379,7 @@ void Dudang::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//退出×
+	CDialogEx::OnOK();
 }
 LRESULT Dudang::OnNcHitTest(CPoint point)
 {

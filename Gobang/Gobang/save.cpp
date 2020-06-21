@@ -30,7 +30,6 @@ void save::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDOK, yes);
 	DDX_Control(pDX, IDCANCEL, no);
 	DDX_Control(pDX, IDC_EDIT1, edit);
-	DDX_Control(pDX, IDC_BUTTON1, button1);
 	DDX_Control(pDX, IDC_BUTTON2, button2);
 }
 
@@ -40,7 +39,6 @@ BEGIN_MESSAGE_MAP(save, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT1, &save::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDOK, &save::OnBnClickedOk)
 	ON_BN_CLICKED(IDCANCEL, &save::OnBnClickedCancel)
-	ON_BN_CLICKED(IDC_BUTTON1, &save::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &save::OnBnClickedButton2)
 	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
@@ -98,16 +96,11 @@ BOOL save::OnInitDialog()
 		no.GetWindowRect(rect);
 		no.MoveWindow(225, 97, rect.Width(), rect.Height(), TRUE);
 
-		button1.GetWindowRect(rect);
-		button1.MoveWindow(157, 0, rect.Width(), rect.Height(), TRUE);
 		button2.GetWindowRect(rect);
 		button2.MoveWindow(230, 0, rect.Width(), rect.Height(), TRUE);
 
 	}
 	reset_bk(IDB_BITMAP2);
-	button1.SetTextColor(RGB(255, 255, 255));
-	button1.SetBkColor(RGB(0, 0, 0));
-	button1.SetDiaphaneity(100, 180, 10);
 	button2.SetTextColor(RGB(255, 255, 255));
 	button2.SetBkColor(RGB(0, 0, 0));
 	button2.SetDiaphaneity(100, 180, 10);
@@ -141,17 +134,13 @@ LRESULT save::OnNcHitTest(CPoint point)
 	return CDialogEx::OnNcHitTest(point);
 }
 
-void save::OnBnClickedButton1()
-{
-	// TODO: 在此添加控件通知处理程序代码
-	//—
-}
 
 
 void save::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//×
+	CDialogEx::OnCancel();
 }
 
 

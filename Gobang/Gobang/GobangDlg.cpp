@@ -299,6 +299,7 @@ void CGobangDlg::OnBnClickedButton6()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//—
+	PostMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 }
 
 
@@ -306,4 +307,5 @@ void CGobangDlg::OnBnClickedButton7()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//×
+	CDialogEx::OnOK();
 }
