@@ -469,3 +469,7 @@ void Game::OnBnClickedButton10()
 	// TODO: 在此添加控件通知处理程序代码
 	//退出×
 }
+
+void Game::OnStnClickedBoard()
+{
+}

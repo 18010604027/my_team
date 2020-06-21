@@ -68,6 +68,8 @@ void CGobangDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUTTON5, button5);
 	DDX_Control(pDX, IDC_BUTTON3, button3);
 	DDX_Control(pDX, IDC_BUTTON4, button4);
+	DDX_Control(pDX, IDC_BUTTON6, button6);
+	DDX_Control(pDX, IDC_BUTTON7, button7);
 }
 
 BEGIN_MESSAGE_MAP(CGobangDlg, CDialogEx)
@@ -81,6 +83,8 @@ BEGIN_MESSAGE_MAP(CGobangDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BUTTON4, &CGobangDlg::OnBnClickedButton4)
 	ON_WM_NCHITTEST()
 	ON_MESSAGE(190, MyBoardDown)
+	ON_BN_CLICKED(IDC_BUTTON6, &CGobangDlg::OnBnClickedButton6)
+	ON_BN_CLICKED(IDC_BUTTON7, &CGobangDlg::OnBnClickedButton7)
 END_MESSAGE_MAP()
 
 
@@ -139,6 +143,12 @@ BOOL CGobangDlg::OnInitDialog()
 	button5.SetTextColor(RGB(255, 255, 255));
 	button5.SetBkColor(RGB(0, 0, 0));
 	button5.SetDiaphaneity(100, 180, 10);
+	button6.SetTextColor(RGB(255, 255, 255));
+	button6.SetBkColor(RGB(0, 0, 0));
+	button6.SetDiaphaneity(100, 180, 10);
+	button7.SetTextColor(RGB(255, 255, 255));
+	button7.SetBkColor(RGB(0, 0, 0));
+	button7.SetDiaphaneity(100, 180, 10);
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
 
@@ -263,4 +273,18 @@ LRESULT CGobangDlg::OnNcHitTest(CPoint point)
 		return CDialog::OnNcHitTest(point);
 	}
 	return CDialogEx::OnNcHitTest(point);
+}
+
+
+void CGobangDlg::OnBnClickedButton6()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//—
+}
+
+
+void CGobangDlg::OnBnClickedButton7()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	//×
 }

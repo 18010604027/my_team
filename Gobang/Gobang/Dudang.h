@@ -38,5 +38,6 @@ public:
 	CMyButton button3;
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
+	afx_msg LRESULT OnNcHitTest(CPoint point);
 	afx_msg void OnPaint();
 };

@@ -29,6 +29,8 @@ void Fupan::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_SCROLLBAR1, mylist);
 	DDX_Control(pDX, IDC_S, scrbar);
+	DDX_Control(pDX, IDC_BUTTON2, button2);
+	DDX_Control(pDX, IDC_BUTTON3, button3);
 }
 
 
@@ -39,6 +41,8 @@ BEGIN_MESSAGE_MAP(Fupan, CDialogEx)
 	ON_WM_CTLCOLOR()
 	ON_WM_VSCROLL()
 	ON_WM_MOUSEWHEEL()
+	ON_BN_CLICKED(IDC_BUTTON2, &Fupan::OnBnClickedButton2)
+	ON_BN_CLICKED(IDC_BUTTON3, &Fupan::OnBnClickedButton3)
 END_MESSAGE_MAP()
 
 
@@ -131,6 +135,12 @@ BOOL Fupan::OnInitDialog()
 
 	// TODO:  在此添加额外的初始化
 	reset_bk(IDB_BITMAP2);
+	button2.SetTextColor(RGB(255, 255, 255));
+    button2.SetBkColor(RGB(0, 0, 0));
+    button2.SetDiaphaneity(100, 180, 10);
+	button3.SetTextColor(RGB(255, 255, 255));
+	button3.SetBkColor(RGB(0, 0, 0));
+	button3.SetDiaphaneity(100, 180, 10);
 	/*
 	for (int i = 0; i < 30; i++)
 	{
@@ -177,6 +187,10 @@ BOOL Fupan::OnInitDialog()
 
 		return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 	}
+}
+void Fupan::OnPaint()
+{
+	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
 }
 
 
@@ -265,4 +279,31 @@ BOOL Fupan::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
 
 	return CDialogEx::OnMouseWheel(nFlags, zDelta, pt);
+}
+
+void Fupan::OnBnClickedButton2()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+
+
+void Fupan::OnBnClickedButton3()
+{
+	// TODO: 在此添加控件通知处理程序代码
+}
+LRESULT Fupan::OnNcHitTest(CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ScreenToClient(&point);
+	CRect rc;
+	GetClientRect(&rc);
+	if (rc.PtInRect(point))
+	{
+		return HTCAPTION;
+	}
+	else
+	{
+		return CDialog::OnNcHitTest(point);
+	}
+	return CDialogEx::OnNcHitTest(point);
 }

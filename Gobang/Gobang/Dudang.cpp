@@ -10,6 +10,7 @@
 #include"chess_man.h"
 #include"file_name.h"
 #include"Game.h"
+#include"MyButton.h"
 // Dudang 对话框
 
 IMPLEMENT_DYNAMIC(Dudang, CDialogEx)
@@ -145,6 +146,13 @@ BOOL Dudang::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
+	reset_bk(IDB_BITMAP2);
+	button2.SetTextColor(RGB(255, 255, 255));
+	button2.SetBkColor(RGB(0, 0, 0));
+	button2.SetDiaphaneity(100, 180, 10);
+	button3.SetTextColor(RGB(255, 255, 255));
+	button3.SetBkColor(RGB(0, 0, 0));
+	button3.SetDiaphaneity(100, 180, 10);
 	/*
 	for (int i = 0; i < 30; i++)
 	{
@@ -191,6 +199,11 @@ BOOL Dudang::OnInitDialog()
 
 		return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 	}
+}
+
+void Dudang::OnPaint()
+{
+	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
 }
 
 
@@ -293,5 +306,21 @@ void Dudang::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//退出×
+}
+LRESULT Dudang::OnNcHitTest(CPoint point)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	ScreenToClient(&point);
+	CRect rc;
+	GetClientRect(&rc);
+	if (rc.PtInRect(point))
+	{
+		return HTCAPTION;
+	}
+	else
+	{
+		return CDialog::OnNcHitTest(point);
+	}
+	return CDialogEx::OnNcHitTest(point);
 }
 
