@@ -194,6 +194,8 @@ BOOL Game::OnInitDialog()
 	if (azbycx == 1)
 	{
 		int i = 1;
+		std::string strStr;
+		strStr=str1.GetBuffer(0);
 		Chess_man.initial(str1,i);
 		do
 		{

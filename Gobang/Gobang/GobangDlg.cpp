@@ -34,10 +34,10 @@ public:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 // 实现
-protected:
-	DECLARE_MESSAGE_MAP()
+//protected:
+	//DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedButton6();
+//	afx_msg void OnBnClickedButton6();
 };
 
 CAboutDlg::CAboutDlg() : CDialogEx(IDD_ABOUTBOX)
@@ -48,10 +48,6 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 }
-
-BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
-	ON_BN_CLICKED(IDC_BUTTON6, &CAboutDlg::OnBnClickedButton6)
-END_MESSAGE_MAP()
 
 
 // CGobangDlg 对话框
@@ -202,7 +198,6 @@ void CGobangDlg::OnBnClickedButton1()
 	// TODO: 在此添加控件通知处理程序代码
 	//开始游戏
 	Game game;
-	game.azbycx = 0;
 	game.DoModal();
 }
 

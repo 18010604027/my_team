@@ -24,7 +24,7 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	std::string str1;
+	CString str1;
 	int azbycx;//0开始 1读档 2复盘
 	bool ch;
 	bool AI;
