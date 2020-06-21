@@ -112,19 +112,73 @@ void Dudang::OnBnClickedButton1()
 		NULL,
 		NULL,
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		(LPCTSTR)_TEXT("读档 (*.ld)|*.ld|All Files (*.*)|*.*||"),
+		(LPCTSTR)_TEXT("读档 (*.ld)|*.ld|*.ld (*.*)|*.*||"),
 		NULL);
 	dlg.m_ofn.lpstrInitialDir = strPath;
 	if (dlg.DoModal() == IDOK)
 	{
-		FilePathName = dlg.GetPathName(); //文件名保存在了FilePathName里
-		nTemp = FilePathName.GetAllocLength() - FilePathName.ReverseFind('\\');
-		FilePathName = FilePathName.Right(nTemp - 1);
-		nTemp = FilePathName.ReverseFind('.');
-		FilePathName = FilePathName.Left(nTemp);
+		FilePathName = dlg.GetPathName(); //路径+文件名保存在了FilePathName里
+														
+		CString FilePathName2 = FilePathName;//FilePathName2将会保存文件名
+		CString FilePathName3 = FilePathName;//FilePathName3与FilePathName一样
+		nTemp = FilePathName2.GetAllocLength() - FilePathName2.ReverseFind('\\');//这四行是用来得到文件名的
+		FilePathName2 = FilePathName2.Right(nTemp - 1);//这四行是用来得到文件名的
+		nTemp = FilePathName2.ReverseFind('.');//这四行是用来得到文件名的
+		FilePathName2 = FilePathName2.Left(nTemp);//这四行是用来得到文件名的
 		//MessageBox(FilePathName);
+
+
+		//这里还没有写完
+		CString str_temp2 = FilePathName3;//获取文件所在的上一个文件夹
+		nTemp = str_temp2.ReverseFind('\\');//获取文件所在的上一个文件夹
+		str_temp2 = str_temp2.Left(nTemp);//获取文件所在的上一个文件夹
+		nTemp = str_temp2.GetAllocLength() - str_temp2.ReverseFind('\\');//获取文件所在的上一个文件夹
+		str_temp2 = str_temp2.Right(nTemp - 1);//获取文件所在的上一个文件夹
+		if (str_temp2 == "date1")//复盘的时候，别写成date1，别直接复制粘贴
+		{
+
+		}
+		else
+		{
+			int i = 0;
+			name name_1;
+			name* name_2;
+			name_2 = name_1.get_name1();//注意，在复盘界面要调用的是get_name2，不是get_name1，别直接复制粘贴
+			name_2 = name_2->next;
+			std::string str_temp3(CW2A(FilePathName2.GetString()));//str_temp3储存的是文件名与FilePathName2一样
+			while (name_2 != nullptr)
+			{
+				if (name_2->na == str_temp3)
+				{
+					name_2 = name_2->next;
+					i++;
+				}
+
+				else
+				{
+					name_2 = name_2->next;
+				}
+			}
+			if (i == 0)
+			{
+				//说明在allname1文件里面，没有和它重名的
+			}
+			else
+			{
+				str_temp3=str_temp3 + "(copy)";//这里会报错
+			}
+			fstream file_temp("allname1.txt",ios::out|ios::app);//注意这里不能忘了app//还有一件事在复盘那里是allname2,别直接复制粘贴
+			file_temp<< str_temp3;
+			file_temp.close();
+			FilePathName2 = str_temp3.c_str();
+
+		}
+
+
+
+
 		Game game;
-		game.str1 = FilePathName;
+		game.str1 = FilePathName2;
 		game.DoModal();
 
 
