@@ -36,11 +36,13 @@ void save::DoDataExchange(CDataExchange* pDX)
 
 
 BEGIN_MESSAGE_MAP(save, CDialogEx)
+	ON_WM_PAINT()
 	ON_EN_CHANGE(IDC_EDIT1, &save::OnEnChangeEdit1)
 	ON_BN_CLICKED(IDOK, &save::OnBnClickedOk)
 	ON_BN_CLICKED(IDCANCEL, &save::OnBnClickedCancel)
 	ON_BN_CLICKED(IDC_BUTTON1, &save::OnBnClickedButton1)
 	ON_BN_CLICKED(IDC_BUTTON2, &save::OnBnClickedButton2)
+	ON_WM_CTLCOLOR()
 END_MESSAGE_MAP()
 
 
@@ -81,6 +83,27 @@ BOOL save::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
 	// TODO:  在此添加额外的初始化
+	{
+		CRect rect;
+		GetWindowRect(rect);
+		MoveWindow(rect.left, rect.top, 300, 120, TRUE);
+		edit.GetWindowRect(rect);
+		edit.MoveWindow(40, 60, rect.Width(), 20, TRUE);
+		
+		GetDlgItem(IDC_STATIC)->GetWindowRect(rect);
+		GetDlgItem(IDC_STATIC)->MoveWindow(20, 30, 100, rect.Height(), TRUE);
+
+		yes.GetWindowRect(rect);
+		yes.MoveWindow(145, 97, rect.Width(), rect.Height(), TRUE);
+		no.GetWindowRect(rect);
+		no.MoveWindow(225, 97, rect.Width(), rect.Height(), TRUE);
+
+		button1.GetWindowRect(rect);
+		button1.MoveWindow(157, 0, rect.Width(), rect.Height(), TRUE);
+		button2.GetWindowRect(rect);
+		button2.MoveWindow(230, 0, rect.Width(), rect.Height(), TRUE);
+
+	}
 	reset_bk(IDB_BITMAP2);
 	button1.SetTextColor(RGB(255, 255, 255));
 	button1.SetBkColor(RGB(0, 0, 0));
@@ -129,4 +152,20 @@ void save::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//×
+}
+
+
+HBRUSH save::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
+{
+	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
+
+	// TODO:  在此更改 DC 的任何特性
+	int ID = pWnd->GetDlgCtrlID();
+	if (ID == IDC_STATIC)
+	{
+		pDC->SetBkMode(TRANSPARENT);
+		return (HBRUSH)GetStockObject(NULL_BRUSH);
+	}
+	// TODO:  如果默认的不是所需画笔，则返回另一个画笔
+	return hbr;
 }
