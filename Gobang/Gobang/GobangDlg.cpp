@@ -127,6 +127,9 @@ BOOL CGobangDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+	CRect rect;	
+	GetWindowRect(rect);	
+	MoveWindow(rect.left, rect.top, 800, 500, TRUE);
 	set_bk(IDB_BITMAP1);
 	button1.SetTextColor(RGB(255, 255, 255));
 	button1.SetBkColor(RGB(0, 0, 0));
