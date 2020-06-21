@@ -47,7 +47,6 @@ public:
 	afx_msg HBRUSH OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor);
 	afx_msg void OnBnClickedButton5();
 	CBoard board;
-	afx_msg void OnStnClickedBoard();
 	afx_msg LRESULT MyBoardDown(WPARAM x, LPARAM y);
 	CMyButton gbutton6;
 	CMyButton gbutton7;
