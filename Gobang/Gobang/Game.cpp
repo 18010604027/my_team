@@ -91,6 +91,10 @@ LRESULT Game::MyBoardDown(WPARAM x, LPARAM y)
 				MessageBox(L"白棋胜", L"温馨提示");
 			}
 		}
+		if (win)
+		{
+			return 0;
+		}
 		if (AI)
 		{
 			ch = !ch;;
@@ -126,6 +130,15 @@ void Game::OnBnClickedButton1()
 	board.ChangeChess(_x, _y, _m);
 	rule.change(c1);
 	Chess_man.delete_chess();
+	if (AI)
+	{
+		chess c1;
+		c1 = Chess_man.get_chess();
+		int _x = c1.x, _y = c1.y, _m = 0;
+		board.ChangeChess(_x, _y, _m);
+		rule.change(c1);
+		Chess_man.delete_chess();
+	}
 }
 
 void Game::OnBnClickedButton2()

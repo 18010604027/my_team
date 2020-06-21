@@ -155,6 +155,29 @@ void chess_man::save(int x)
 		string  filename;
 		filename = file;
 		//cin >> filename;
+
+		int j = 0;//用来记录是否file重名了，如果j=0，就没有
+		name name_example;
+		name* name_temp;
+		name_temp = name_example.get_name1();
+		name_temp = name_temp->next;
+		string filename2 = filename + ".ld";//注意x=2的时候，不能写+“.ld”,不能直接复制粘贴
+		while (name_temp != nullptr)
+		{
+			if (name_temp->na == filename2)
+			{
+				j++;
+				name_temp = name_temp->next;
+			}
+			else
+			{
+				name_temp = name_temp->next;
+			}
+
+		}
+
+
+
 		fstream iofile;
 		iofile.open("date1\\" + filename + ".ld", ios::out);
 		iofile << length << endl;								//这里是把头空间的length储存到文件里面
@@ -162,17 +185,26 @@ void chess_man::save(int x)
 		{
 			while (i <= length)
 			{
-
 				iofile << temp->chess1.x << endl << temp->chess1.y << endl << temp->chess1.z << endl;//注意temp->chess1->x是错误的，电脑会显示"表达式必须包含指针类型"
 				i++;
 				temp = temp->next;
 			}
 		}
 		iofile.close();
-		fstream file_out("allname1.txt", ios::out | ios::app);//注意，这里很容易犯错误，一定要在文件尾添加数据，而不是直接写数据，因为直接写数据会把原先的数据给删了
-		file_out << filename + ".ld" << endl;//这里可能会报错//注意一定要有换行符
-		file_out.close();
+		if (j == 0)
+		{
+			fstream file_out("allname1.txt", ios::out | ios::app);//注意，这里很容易犯错误，一定要在文件尾添加数据，而不是直接写数据，因为直接写数据会把原先的数据给删了
+			file_out << filename + ".ld" << endl;//这里可能会报错//注意一定要有换行符
+			file_out.close();
+		}
+		else
+		{
+
+		}
 	}
+
+
+
 	if (x == 2)
 	{
 		int i = 1;		//用来控制while循环的
@@ -180,6 +212,30 @@ void chess_man::save(int x)
 		string  filename;
 		filename = file;
 		//cin >> filename;
+
+		int j = 0;//用来记录是否file重名了，如果j=0，就没有
+		name name_example;
+		name* name_temp;
+		name_temp = name_example.get_name2();//注意这里不能写get_name2,不能直接复制粘贴过来
+		name_temp = name_temp->next;
+		string filename2 = filename + ".rp";
+		while (name_temp != nullptr)
+		{
+			if (name_temp->na == filename2)
+			{
+				j++;
+				name_temp = name_temp->next;
+				//cout << j << endl;
+			}
+			else
+			{
+				name_temp = name_temp->next;
+			}
+
+		}
+
+
+
 		fstream iofile;
 		iofile.open("date2\\" + filename + ".rp", ios::out);
 		iofile << length << endl;								//这里是把头空间的length储存到文件里面
@@ -192,11 +248,18 @@ void chess_man::save(int x)
 				temp = temp->next;
 			}
 		}
+		//iofile.close();
 		iofile.close();
-		iofile.close();
-		fstream file_out("allname2.txt", ios::out | ios::app);
-		file_out << filename + ".rp" << endl;//注意一定要有换行符
-		file_out.close();
+		if (j == 0)
+		{
+			fstream file_out("allname2.txt", ios::out | ios::app);
+			file_out << filename + ".rp" << endl;//注意一定要有换行符
+			file_out.close();
+		}
+		else
+		{
+
+		}
 	}
 }
 bool chess_man::jumpup()//这个应该是改变指针now的值，使之指向上一个

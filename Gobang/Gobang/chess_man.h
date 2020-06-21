@@ -1,4 +1,5 @@
 #pragma once
+#include"file_name.h"
 #include<iostream>
 #include<fstream>
 using namespace std;

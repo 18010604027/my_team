@@ -135,10 +135,10 @@ BOOL CGobangDlg::OnInitDialog()
 		button1.MoveWindow(190, 220, rect.Width(), rect.Height(), TRUE);
 		button2.GetWindowRect(rect);
 		button2.MoveWindow(500, 220, rect.Width(), rect.Height(), TRUE);
-		button3.GetWindowRect(rect);
-		button3.MoveWindow(190, 310, rect.Width(), rect.Height(), TRUE);
 		button4.GetWindowRect(rect);
-		button4.MoveWindow(500, 310, rect.Width(), rect.Height(), TRUE);
+		button4.MoveWindow(190, 310, rect.Width(), rect.Height(), TRUE);
+		button3.GetWindowRect(rect);
+		button3.MoveWindow(500, 310, rect.Width(), rect.Height(), TRUE);
 		button5.GetWindowRect(rect);
 		button5.MoveWindow(350, 380, rect.Width(), rect.Height(), TRUE);
 		button6.GetWindowRect(rect);
