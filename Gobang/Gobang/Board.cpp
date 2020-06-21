@@ -27,13 +27,9 @@ CBoard::CBoard()
 }
 CBoard::~CBoard()
 {
-	white.Detach();
 	white.Destroy();
-	white.Detach();
 	black.Destroy();
 	dc.DeleteDC();
-	white.Destroy();
-	black.Destroy();
 }
 BEGIN_MESSAGE_MAP(CBoard, CStatic)
 	ON_WM_LBUTTONDOWN()
