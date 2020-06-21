@@ -118,6 +118,7 @@ void Game::OnBnClickedButton1()
 void Game::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//返回
 	if (MessageBox(_T("是否保存进度？"), _T("提醒："), MB_YESNO) == IDNO)
 	{
 		Game::OnOK();
@@ -126,7 +127,10 @@ void Game::OnBnClickedButton2()
 	{
 		save Save;
 		Save.DoModal();
-		Chess_man.save(1);
+		if (Save.DoModal() == IDOK)
+		{
+			Chess_man.save(1);
+		}
 	}
 }
 
@@ -137,7 +141,10 @@ void Game::OnBnClickedButton3()
 	//保存进度
 	save Save;
 	Save.DoModal(); 
-	Chess_man.save(1);
+	if (Save.DoModal() == IDOK)
+	{
+		Chess_man.save(1);
+	}
 }
 
 void Game::OnBnClickedButton4()
@@ -153,7 +160,10 @@ void Game::OnBnClickedButton4()
 	{
 		save Save;
 		Save.DoModal();
-		Chess_man.save(2);
+		if (Save.DoModal() == IDOK)
+		{
+			Chess_man.save(2);
+		}
 	}
 }
 
