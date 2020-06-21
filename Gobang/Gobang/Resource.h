@@ -13,7 +13,6 @@
 #define IDD_DIALOG2                     135
 #define IDD_DIALOG3                     137
 #define IDD_DIALOG4                     144
-#define IDB_BITMAP3                     146
 #define IDC_BUTTON1                     1000
 #define IDC_BUTTON2                     1001
 #define IDC_BUTTON3                     1002
