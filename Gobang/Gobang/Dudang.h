@@ -40,4 +40,5 @@ public:
 	afx_msg void OnBnClickedButton3();
 	afx_msg LRESULT OnNcHitTest(CPoint point);
 	afx_msg void OnPaint();
+	afx_msg void OnStnClickedS();
 };
