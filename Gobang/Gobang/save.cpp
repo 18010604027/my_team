@@ -16,7 +16,6 @@ IMPLEMENT_DYNAMIC(save, CDialogEx)
 
 save::save(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_DIALOG4, pParent)
-	, edit(_T(""))
 {
 
 }
@@ -30,7 +29,7 @@ void save::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDOK, yes);
 	DDX_Control(pDX, IDCANCEL, no);
-	DDX_Text(pDX, IDC_EDIT1, edit);
+	DDX_Control(pDX, IDC_EDIT1, edit);
 }
 
 
@@ -61,7 +60,7 @@ void save::OnBnClickedOk()
 	// TODO: 在此添加控件通知处理程序代码
 	Game* game = (Game*)GetParent();
 	CString str;
-	this->GetWindowText(str);//获取当前子窗口编辑框中的值
+	edit.GetWindowText(str);//获取当前子窗口编辑框中的值
 	std::string str1(CW2A(str.GetString()));
 	game->Chess_man.change_file(str1);
 	CDialogEx::OnOK();

@@ -200,6 +200,7 @@ void CGobangDlg::OnBnClickedButton1()
 	Game game;
 	game.azbycx = 0;
 	game.DoModal();
+	reset_bk(IDB_BITMAP1);
 }
 
 
@@ -207,10 +208,9 @@ void CGobangDlg::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//载入进度
-	Game game;
-	game.azbycx = 1;
 	Dudang select;
 	select.DoModal();
+	reset_bk(IDB_BITMAP1);
 }
 
 void CGobangDlg::OnBnClickedButton3()
@@ -221,15 +221,26 @@ void CGobangDlg::OnBnClickedButton3()
 void CGobangDlg::OnBnClickedButton4()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	Game game;
-	game.azbycx = 2;
 	Fupan back;
 	back.DoModal();
+	reset_bk(IDB_BITMAP1);
 }
 void CGobangDlg::OnBnClickedButton5()
 {
 	// TODO: 在此添加控件通知处理程序代码
-	WinExec("notepad.exe 游戏说明.txt ", SW_SHOWNORMAL);
+	MessageBox(L"\
+中 文 名      五子棋\n\n\
+英 文 名      Gobang\n\n\
+棋      盘      15道盘\n\n\
+棋      子      黑白棋子\n\n\
+规      则      对局双方各执一色棋子，黑先、白后，交替下子，每次只能下一子，\n\
+                   且下在棋盘的无子交叉点。五子连珠则获胜，一方获胜，游戏结束。\n\n\
+功能说明   保存进度：保存该盘对局的游戏状态，留供以后查考。\n\n\
+                 载入进度：重新读取原来的游戏状态，继续该盘对局。\n\n\
+                 复       盘：对局双方将本盘对局全过程的再现。\n\n\
+                 悔       棋：棋子下定后收回重下。\
+", L"游戏说明");
+	//WinExec("notepad.exe 游戏说明.txt ", SW_SHOWNORMAL);
 }
 LRESULT CGobangDlg::OnNcHitTest(CPoint point)
 {

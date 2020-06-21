@@ -31,7 +31,7 @@ public:
 	Rule rule;
 	bool win;
 	chess_man Chess_man;
-	chess_man *chess_man;
+	bool change;
 	afx_msg void OnBnClickedButton1();
 	afx_msg void OnBnClickedButton2();
 	afx_msg void OnBnClickedButton3();
