@@ -107,7 +107,7 @@ void Fupan::OnBnClickedButton1()
 		NULL,
 		NULL,
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		(LPCTSTR)_TEXT("复盘 (*.rp)|*.rp|*.rp (*.*)|*.*||"),
+		(LPCTSTR)_TEXT("复盘 (*.rp)|*.rp||"),
 		NULL);
 	dlg.m_ofn.lpstrInitialDir = strPath;
 	if (dlg.DoModal() == IDOK)

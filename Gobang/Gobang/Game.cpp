@@ -218,7 +218,7 @@ void Game::OnBnClickedButton4()
 				}
 				else
 				{
-					return;
+					//return;
 				}
 			}
 		}
@@ -238,7 +238,7 @@ void Game::OnBnClickedButton4()
 				}
 				else
 				{
-					return;
+					//return;
 				}
 			}
 		}
@@ -260,7 +260,7 @@ void Game::OnBnClickedButton4()
 			}
 			else
 			{
-				return;
+				//return;
 			}
 		}
 	}

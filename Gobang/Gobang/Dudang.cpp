@@ -83,8 +83,6 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	*/
 	return 0;
 }
-
-
 void Dudang::OnNMThemeChangedScrollbar1(NMHDR* pNMHDR, LRESULT* pResult)
 {
 
@@ -93,8 +91,6 @@ void Dudang::OnNMThemeChangedScrollbar1(NMHDR* pNMHDR, LRESULT* pResult)
 	// TODO: 在此添加控件通知处理程序代码
 	*pResult = 0;
 }
-
-
 void Dudang::OnBnClickedButton1()
 {
 	CString strPath;
@@ -113,7 +109,7 @@ void Dudang::OnBnClickedButton1()
 		NULL,
 		NULL,
 		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT,
-		(LPCTSTR)_TEXT("读档 (*.ld)|*.ld|*.ld (*.*)|*.*||"),
+		(LPCTSTR)_TEXT("读档 (*.ld)|*.ld||"),
 		NULL);
 	dlg.m_ofn.lpstrInitialDir = strPath;
 	if (dlg.DoModal() == IDOK)
@@ -195,8 +191,6 @@ void Dudang::OnBnClickedButton1()
 		return;
 	}
 }
-
-
 BOOL Dudang::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
@@ -272,13 +266,10 @@ BOOL Dudang::OnInitDialog()
 		return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 	}
 }
-
 void Dudang::OnPaint()
 {
 	draw_bk(1);// 不为绘图消息调用 CDialogEx::OnPaint()
 }
-
-
 HBRUSH Dudang::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 {
 	HBRUSH hbr = CDialogEx::OnCtlColor(pDC, pWnd, nCtlColor);
@@ -293,8 +284,6 @@ HBRUSH Dudang::OnCtlColor(CDC* pDC, CWnd* pWnd, UINT nCtlColor)
 	// TODO:  如果默认的不是所需画笔，则返回另一个画笔
 	return hbr;
 }
-
-
 void Dudang::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
@@ -334,8 +323,6 @@ void Dudang::OnVScroll(UINT nSBCode, UINT nPos, CScrollBar* pScrollBar)
 
 	CDialogEx::OnVScroll(nSBCode, nPos, pScrollBar);
 }
-
-
 BOOL Dudang::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 {
 	CRect rc;
@@ -365,16 +352,12 @@ BOOL Dudang::OnMouseWheel(UINT nFlags, short zDelta, CPoint pt)
 
 	return CDialogEx::OnMouseWheel(nFlags, zDelta, pt);
 }
-
-
 void Dudang::OnBnClickedButton2()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	//最小化—
 	PostMessage(WM_SYSCOMMAND, SC_MINIMIZE, 0);
 }
-
-
 void Dudang::OnBnClickedButton3()
 {
 	// TODO: 在此添加控件通知处理程序代码
