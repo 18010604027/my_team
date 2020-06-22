@@ -129,7 +129,7 @@ void Fupan::OnBnClickedButton1()
 		str_temp2 = str_temp2.Left(nTemp);//获取文件所在的上一个文件夹
 		nTemp = str_temp2.GetAllocLength() - str_temp2.ReverseFind('\\');//获取文件所在的上一个文件夹
 		str_temp2 = str_temp2.Right(nTemp - 1);//获取文件所在的上一个文件夹
-		if (str_temp2 == "date2")
+		if (str_temp2 == "data2")
 		{
 
 		}

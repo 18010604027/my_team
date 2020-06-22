@@ -30,7 +30,7 @@ void chess_man::initial(string file1, int i)
 		last->prev = head;
 		file = file1;
 		fstream iofile;
-		iofile.open("date1\\" + file + ".ld", ios::in);//注意这里date文件夹的位置可能放错了
+		iofile.open("data1\\" + file + ".ld", ios::in);//注意这里data文件夹的位置可能放错了
 
 		iofile >> length;
 		int i = 0;//用来控制从文件里面读取数据
@@ -66,7 +66,7 @@ void chess_man::initial(string file1, int i)
 		last->prev = head;
 		file = file1;
 		fstream iofile;
-		iofile.open("date2\\" + file+".rp", ios::in);//注意这里date文件夹的位置可能放错了
+		iofile.open("data2\\" + file+".rp", ios::in);//注意这里data文件夹的位置可能放错了
 
 		iofile >> length;
 		int i = 0;//用来控制从文件里面读取数据
@@ -179,7 +179,7 @@ void chess_man::save(int x)
 
 
 		fstream iofile;
-		iofile.open("date1\\" + filename + ".ld", ios::out);
+		iofile.open("data1\\" + filename + ".ld", ios::out);
 		iofile << length << endl;								//这里是把头空间的length储存到文件里面
 		if (length > 0)
 		{
@@ -237,7 +237,7 @@ void chess_man::save(int x)
 
 
 		fstream iofile;
-		iofile.open("date2\\" + filename + ".rp", ios::out);
+		iofile.open("data2\\" + filename + ".rp", ios::out);
 		iofile << length << endl;								//这里是把头空间的length储存到文件里面
 		if (length > 0)
 		{
