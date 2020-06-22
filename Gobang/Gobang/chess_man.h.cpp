@@ -2,7 +2,7 @@
 #include"chess_man.h" 
 chess_man::chess_man()						//这个构造函数应该要读文件才对
 {
-	
+
 }
 void chess_man::initial()
 {
@@ -30,7 +30,7 @@ void chess_man::initial(string file1, int i)
 		last->prev = head;
 		file = file1;
 		fstream iofile;
-		iofile.open("date1\\" + file, ios::in);//注意这里date文件夹的位置可能放错了
+		iofile.open("date1\\" + file + ".ld", ios::in);//注意这里date文件夹的位置可能放错了
 
 		iofile >> length;
 		int i = 0;//用来控制从文件里面读取数据
@@ -66,7 +66,7 @@ void chess_man::initial(string file1, int i)
 		last->prev = head;
 		file = file1;
 		fstream iofile;
-		iofile.open("date2\\" + file, ios::in);//注意这里date文件夹的位置可能放错了
+		iofile.open("date2\\" + file+".rp", ios::in);//注意这里date文件夹的位置可能放错了
 
 		iofile >> length;
 		int i = 0;//用来控制从文件里面读取数据
@@ -194,7 +194,7 @@ void chess_man::save(int x)
 		if (j == 0)
 		{
 			fstream file_out("allname1.txt", ios::out | ios::app);//注意，这里很容易犯错误，一定要在文件尾添加数据，而不是直接写数据，因为直接写数据会把原先的数据给删了
-			file_out << filename + ".ld" << endl;//这里可能会报错//注意一定要有换行符
+			file_out << filename << endl;//这里可能会报错//注意一定要有换行符
 			file_out.close();
 		}
 		else
@@ -253,7 +253,7 @@ void chess_man::save(int x)
 		if (j == 0)
 		{
 			fstream file_out("allname2.txt", ios::out | ios::app);
-			file_out << filename + ".rp" << endl;//注意一定要有换行符
+			file_out << filename << endl;//注意一定要有换行符
 			file_out.close();
 		}
 		else

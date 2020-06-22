@@ -68,11 +68,7 @@ LRESULT Dudang::MyMsgHandler(WPARAM w, LPARAM l)
 	str_1 = temp->na;
 	game.str1 = str_1.c_str();
 	game.DoModal();
-
-
-	CDialogEx::OnOK();
-	
-	
+	CDialogEx::OnOK();	
 	/*
 	这里需要和谷朋朋商量一下怎么返回给她
 	*/
@@ -133,7 +129,7 @@ void Dudang::OnBnClickedButton1()
 		str_temp2 = str_temp2.Right(nTemp - 1);//获取文件所在的上一个文件夹
 		if (str_temp2 == "date1")//复盘的时候，别写成date1，别直接复制粘贴
 		{
-
+			
 		}
 		else
 		{
