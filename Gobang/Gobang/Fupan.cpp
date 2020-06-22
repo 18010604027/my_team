@@ -167,10 +167,12 @@ void Fupan::OnBnClickedButton1()
 			file_temp.close();
 			FilePathName2 = str_temp3.c_str();
 		}
-
+		ShowWindow(SW_HIDE);
 		Game game;
+		game.azbycx = 2;
 		game.str1 = FilePathName2;
 		game.DoModal();
+		CDialogEx::OnOK();
 	}
 	else
 	{

@@ -173,12 +173,12 @@ void Dudang::OnBnClickedButton1()
 
 
 
-
+		ShowWindow(SW_HIDE);
 		Game game;
+		game.azbycx = 1;
 		game.str1 = FilePathName2;
 		game.DoModal();
-
-
+		CDialogEx::OnOK();
 
 
 		//CString cstr;
